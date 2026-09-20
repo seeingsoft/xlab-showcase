@@ -64,17 +64,6 @@ td.b{font-weight:700;color:var(--ink)}
 .fig figcaption{font-size:13px;color:var(--muted);text-align:center;margin-top:14px}
 .fig svg{width:100%;height:auto;display:block}
 /* ---------- 时间轴 ---------- */
-.tl{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.tl .col{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-.tl .col h3{font-size:15px;margin-bottom:14px}
-.tl .old h3{color:var(--coral)}.tl .new h3{color:var(--green)}
-.tl ul{list-style:none}
-.tl li{font-size:14px;color:#334155;padding:9px 0 9px 26px;position:relative;border-bottom:1px dashed var(--line)}
-.tl li:last-child{border-bottom:0}
-.tl li:before{content:"";position:absolute;left:4px;top:16px;width:9px;height:9px;border-radius:50%}
-.tl .old li:before{background:var(--coral)}.tl .new li:before{background:var(--green)}
-.tl .tot{margin-top:14px;font-weight:800;font-size:14px}
-.tl .old .tot{color:var(--coral)}.tl .new .tot{color:var(--green)}
 /* ---------- CTA ---------- */
 .cta{background:linear-gradient(160deg,#4433a8,#5b4bc4);border-radius:22px;color:#fff;padding:52px 40px;text-align:center;box-shadow:0 20px 50px rgba(68,51,168,.28)}
 .cta h2{color:#fff}
@@ -91,6 +80,57 @@ td.b{font-weight:700;color:var(--ink)}
 .vs .old{color:#5b3a3a;background:#fdf7f7}
 .vs .new{color:#1d4d38;background:#f4fbf7}
 .vs tr:last-child td{border-bottom:none}
+/* ---------- P1：逐时刻对照（过去 vs 现在）+ 金色人工节点 ---------- */
+.dayflow{display:grid;gap:10px}
+.df-row{display:grid;grid-template-columns:74px 1fr;gap:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.df-time{font-weight:800;color:var(--purple-deep);font-size:14px;letter-spacing:.2px}
+.df-what{font-weight:700;color:var(--ink);font-size:13.5px;margin-bottom:8px}
+.df-body{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.df-cell{font-size:13.5px;line-height:1.7}
+.df-cell b{display:block;font-size:11.5px;font-weight:800;letter-spacing:.5px;margin-bottom:3px}
+.df-old{color:#5b3a3a}.df-old b{color:#a35a5a}
+.df-new{color:#1d4d38}.df-new b{color:#2f7d58}
+.df-row.gold{border-color:#fbbf24;border-left:6px solid #fbbf24;background:#fffbeb}
+.df-row.gold .df-time{color:#7c5a10}
+.df-row.gold .df-new{color:#3f3106}
+.df-row.gold .df-new b{color:#7c5a10}
+.gold-tag{display:inline-block;background:#fbbf24;color:#3d2c00;font-weight:800;font-size:12px;border-radius:999px;padding:3px 11px;margin-left:8px;vertical-align:2px}
+.dayflow-foot{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.dayflow-foot div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:13.5px;color:#3b4664}
+.dayflow-foot div b{display:block;font-size:13px;font-weight:800;margin-bottom:4px}
+.dayflow-foot .f-old b{color:var(--coral)}.dayflow-foot .f-new b{color:var(--green)}
+@media(max-width:620px){.df-row{grid-template-columns:1fr}.df-body,.dayflow-foot{grid-template-columns:1fr}}
+/* ---------- P1：能力 → 口径 → 验收线 ---------- */
+.crit{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14px}
+.crit th,.crit td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.crit th{background:var(--purple-soft);color:var(--purple-deep);font-size:13.5px;font-weight:800}
+.crit th:first-child,.crit td:first-child{width:20%;font-weight:700;color:var(--ink)}
+.crit td:last-child{color:#1d4d38}
+.crit tr:last-child td{border-bottom:none}
+@media(max-width:620px){
+  .crit thead{display:none}
+  .crit,.crit tbody,.crit tr,.crit td,.crit td:first-child{display:block;width:auto;max-width:none}
+  .crit tr{border-bottom:1px solid var(--line);padding:8px 0}
+  .crit tr:last-child{border-bottom:none}
+  .crit td{border-bottom:none;padding:6px 16px}
+  .crit td:first-child{font-weight:800;color:var(--purple-deep);background:#f7f9ff;font-size:14px}
+  .crit td:nth-child(2)::before{content:"口径 · ";font-weight:800}
+  .crit td:nth-child(3)::before{content:"验收线 · ";font-weight:800}
+}
+/* ---------- P1：护栏四段式 ---------- */
+.hg{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hg .h-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;border-top:4px solid var(--purple)}
+.hg .h-card h3{font-size:15.5px;color:var(--purple-deep);margin-bottom:10px}
+.hg .h-card ul{list-style:none}
+.hg .h-card li{font-size:13.5px;color:#3b4664;padding:6px 0 6px 18px;position:relative;line-height:1.7}
+.hg .h-card li:before{content:"";position:absolute;left:0;top:13px;width:7px;height:7px;border-radius:50%;background:var(--purple)}
+@media(max-width:620px){.hg{grid-template-columns:1fr}}
+/* ---------- P1：数字出处脚注 ---------- */
+.fn{font-size:11px;color:var(--purple-deep);font-weight:800;vertical-align:super;text-decoration:none;padding:0 1px}
+.src-list{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-top:6px}
+.src-list h3{font-size:14.5px;color:var(--purple-deep);margin-bottom:10px}
+.src-list ol{margin:0;padding-left:20px}
+.src-list li{font-size:13px;color:#3b4664;line-height:1.8;margin-bottom:2px}
 /* ---------- P0：统一收尾（服务能力 / 联系 / 渐变 CTA） ---------- */
 .svc{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:4px}
 .svc li{background:#fff;border:1px solid var(--line);border-left:5px solid var(--purple);border-radius:12px;padding:16px 18px}
@@ -121,13 +161,11 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
 .kpi .n{font-size:26px;font-weight:900;color:var(--purple-deep);letter-spacing:-.5px}
 .kpi .l{font-size:12.5px;color:var(--muted);margin-top:4px}
 @media(max-width:900px){
-  .g3,.g4,.tl{grid-template-columns:1fr 1fr}
-  .kpis{grid-template-columns:repeat(2,1fr)}
+  .g3,.g4,  .kpis{grid-template-columns:repeat(2,1fr)}
   .hero h1{font-size:34px}
 }
 @media(max-width:620px){
-  .g3,.g4,.g2,.tl{grid-template-columns:1fr}
-  section{padding:52px 0}
+  .g3,.g4,.g2,  section{padding:52px 0}
   h2{font-size:24px}
 }
 /* ---------- 统一顶栏（与 AI 招聘页 pitch 同款；令牌就近作用域，不影响页面既有配色） ---------- */
@@ -168,15 +206,15 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
 <!-- ================= 统一顶栏（与 AI 招聘页 pitch 同款） ================= -->
 <header class="nav">
   <div class="nav-inner">
-    <span class="brand"><span class="dot"></span><span class="nm">xLab</span><span class="sub">AI-Native 教育协作平台</span></span>
+    <span class="brand"><span class="dot"></span><span class="nm">xLab</span><span class="sub">教育协作平台</span></span>
     <nav class="nav-links" aria-label="页面导航">
       <a href="#tour">界面巡览</a>
       <a href="#users">三类使用者</a>
       <a href="#core">核心能力</a>
       <a href="#design">设计内核</a>
       <a href="#engine">协作引擎</a>
-      <a href="#versus">对比传统方式</a>
-      <a href="#day">一天的变化</a>
+      <a href="#versus">对比传统</a>
+      <a href="#day">一天变化</a>
       <a href="#limits">设计底线</a>
       <a href="#capability">能力版图</a>
       <a href="#evolve">越用越聪明</a>
@@ -413,8 +451,8 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
       <figcaption>课件准备流水线：AI 连续执行六步，人只在两个关键关口拍板</figcaption>
     </figure>
     <div class="kpis">
-      <div class="kpi"><div class="n">6 步</div><div class="l">AI 自动完成</div></div>
-      <div class="kpi"><div class="n">2 次</div><div class="l">人工确认（最少必要）</div></div>
+      <div class="kpi"><div class="n">6 步<sup class="fn">[5]</sup></div><div class="l">AI 自动完成</div></div>
+      <div class="kpi"><div class="n">2 次<sup class="fn">[6]</sup></div><div class="l">人工确认（最少必要）</div></div>
       <div class="kpi"><div class="n">100%</div><div class="l">事实可回溯原文</div></div>
       <div class="kpi"><div class="n">0</div><div class="l">AI 可代签的动作</div></div>
     </div>
@@ -553,46 +591,108 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
 <section id="day">
   <div class="wrap">
     <h2>一天的变化：<span class="accent">老师的一节新课</span></h2>
-    <p class="sub">同一件事——从"有份课件"到"课程准备好了"，对比一下人工组织和 xLab 协作的差别。</p>
-    <div class="tl">
-      <div class="col old">
-        <h3>传统方式</h3>
-        <ul>
-          <li>在聊天记录里翻上次的流程和物料清单</li>
-          <li>手工梳理课件要点，反复核对数字与说法</li>
-          <li>找人确认内容 → 等回复 → 再改</li>
-          <li>流程时长凭感觉估，常常"讲到一半发现讲不完"</li>
-          <li>开课决定散落在微信里，出了事查不到谁定的</li>
-        </ul>
-        <div class="tot">结果：一节课的准备与协调 ≈ 2 小时+，流程靠人记、责任靠自觉</div>
+    <p class="sub">同一节课，逐时刻对照——左边是过去（人工 + 通用工具），右边是 xLab 协作。金色那一行是全天唯一需要人的动作。</p>
+    <div class="dayflow">
+      <div class="df-row">
+        <div class="df-time">07:50</div>
+        <div><div class="df-what">接到今天的课：要把《光合作用小实验》备成一节 45 分钟的课</div>
+        <div class="df-body">
+          <div class="df-cell df-old"><b>过去怎么做</b>翻教材、找上学期的旧课件、到处搜素材，先花两小时拼出个雏形</div>
+          <div class="df-cell df-new"><b>现在怎么做</b>在 xLab 写下课题与课时，Agent 从教材、题库与校本资料里取料并标注来源</div>
+        </div></div>
       </div>
-      <div class="col new">
-        <h3>xLab 协作</h3>
-        <ul>
-          <li>上传课件，AI 自动提取要点并逐条标注原文出处</li>
-          <li>AI 自动适配时长、给出流程编排与差别提示</li>
-          <li>待确认事项自动进入把关人的收件箱，一次看全</li>
-          <li>确认即留权威回执；材料一改，旧确认自动失效</li>
-          <li>进度线上留痕：谁在等谁、下一步轮到谁，一眼可见</li>
-        </ul>
-        <div class="tot">结果：AI 完成 90% 的准备动作，人只做 2 次把关 ≈ 20 分钟，责任落纸留痕</div>
+      <div class="df-row">
+        <div class="df-time">08:10</div>
+        <div><div class="df-what">课件初稿</div>
+        <div class="df-body">
+          <div class="df-cell df-old"><b>过去怎么做</b>手工抄要点、贴图、排版，数字与说法反复核对</div>
+          <div class="df-cell df-new"><b>现在怎么做</b>Agent 提取要点、逐条标注原文出处并生成初稿；查不到出处的内容不写进去</div>
+        </div></div>
       </div>
+      <div class="df-row">
+        <div class="df-time">08:25</div>
+        <div><div class="df-what">卡时长与节奏</div>
+        <div class="df-body">
+          <div class="df-cell df-old"><b>过去怎么做</b>凭感觉估时长，常常讲到一半发现讲不完</div>
+          <div class="df-cell df-new"><b>现在怎么做</b>Agent 按 45 分钟自动适配时长，给出流程编排与差别提示</div>
+        </div></div>
+      </div>
+      <div class="df-row gold">
+        <div class="df-time">08:40</div>
+        <div><div class="df-what">课件定稿前的那一刀<span class="gold-tag">全天唯一需要人的动作</span></div>
+        <div class="df-body">
+          <div class="df-cell df-old"><b>过去怎么做</b>这一刀也是人切的——但切完还得自己接着往下做，人就是流程本身</div>
+          <div class="df-cell df-new"><b>现在怎么做</b>老师过一遍要点与时长，点"确认"。系统在此暂停等人，其余环节全自动；确认即留权威回执，材料一改旧确认自动失效</div>
+        </div></div>
+      </div>
+      <div class="df-row">
+        <div class="df-time">08:55</div>
+        <div><div class="df-what">内容合规核验</div>
+        <div class="df-body">
+          <div class="df-cell df-old"><b>过去怎么做</b>找教研组长看一眼，微信等回复，等多久看运气</div>
+          <div class="df-cell df-new"><b>现在怎么做</b>Agent 自动核验知识点与引用；仅在命中规则时才转人工复核，非每日固定动作</div>
+        </div></div>
+      </div>
+      <div class="df-row">
+        <div class="df-time">09:10</div>
+        <div><div class="df-what">发布与沉淀</div>
+        <div class="df-body">
+          <div class="df-cell df-old"><b>过去怎么做</b>课件发到群里，谁什么时候定的、哪版是最新，事后说不清</div>
+          <div class="df-cell df-new"><b>现在怎么做</b>发布走线上留痕：谁在等谁、下一步轮到谁一眼可见；课件与核验结论沉淀进校本库</div>
+        </div></div>
+      </div>
+    </div>
+    <div class="dayflow-foot">
+      <div class="f-old"><b>过去：一节课的准备与协调 ≈ 2 小时以上<sup class="fn">[1]</sup></b>流程靠人记、责任靠自觉，多班并行只能加班。</div>
+      <div class="f-new"><b>现在：全天人只动 1 次 ≈ 5 分钟<sup class="fn">[2]</sup></b>其余环节由 Agent 完成，责任落在留痕上。</div>
     </div>
   </div>
 </section>
 
-<!-- ================= 6. 设计思想 ================= -->
+<!-- ================= 6. 合规与安全护栏（P1 四段式） ================= -->
 <section id="limits" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
-    <h2>六条设计底线：<span class="accent">让 AI 值得信任的方式</span></h2>
-    <p class="sub">不是口号，而是写进系统底层的规则——每条都经过反复验证，稳定运行。</p>
-    <div class="grid g3">
-      <div class="card"><div class="ico ico-purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5" stroke="#5b4bc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>意图驱动</h3><p>说一句话说明目标，AI 负责规划与执行；人不需要学复杂的表单操作。</p></div>
-      <div class="card"><div class="ico ico-yellow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 16H3z" stroke="#f4a900" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="#f4a900" stroke-width="2" stroke-linecap="round"/></svg></div><h3>异常即停</h3><p>权限、策略或数据出现异常时自动转人工——绝不"带着疑问硬跑"。</p></div>
-      <div class="card"><div class="ico ico-green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#287a4d" stroke-width="2"/><path d="M16 16l5 5" stroke="#287a4d" stroke-width="2" stroke-linecap="round"/></svg></div><h3>来源可查</h3><p>AI 的每个结论都能回查原始出处；查不到出处的，不许当作事实用。</p></div>
-      <div class="card"><div class="ico ico-blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="#087ea4" stroke-width="2" stroke-linecap="round"/><rect x="5" y="11" width="14" height="9" rx="2.5" stroke="#087ea4" stroke-width="2"/></svg></div><h3>权限最小化</h3><p>每个角色只碰得到与他相关的最小范围；AI 永远不能给自己扩权。</p></div>
-      <div class="card"><div class="ico ico-purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h9M4 18h5" stroke="#5b4bc4" stroke-width="2" stroke-linecap="round"/></svg></div><h3>零打扰通知</h3><p>人只收到"待决定、异常、到期、完成"四类消息；AI 的中间步骤不弹窗。</p></div>
-      <div class="card"><div class="ico ico-coral"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z" stroke="#c43f57" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#c43f57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>儿童优先</h3><p>涉及孩子的信息按最小权限投影；对外发布永远是人的决定，AI 只备稿。</p></div>
+    <h2>合规与安全护栏：<span class="accent">四条边界，写进系统而不是写在文档里</span></h2>
+    <p class="sub">护栏以代码与流程强制落地：数据边界说清什么不出系统，权限与审计说清谁做了什么可查，AI 红线列出永不交给 AI 的判定，人工确认点清单列出每天真正需要人出现的那几处。</p>
+    <div class="hg">
+      <div class="h-card">
+        <h3>一、数据边界：什么不出系统</h3>
+        <ul>
+          <li>教材、课件、校本资料与课堂记录留在学校自己的空间，默认不出系统。</li>
+          <li>涉及孩子的信息按最小权限投影：无关角色看不到，管理端默认脱敏显示。</li>
+          <li>确需外部处理（如调用外部模型能力）时逐次报批，报批与放行记录可查。</li>
+          <li>真实数据不进入开发与演示环境；演示一律用构造数据。</li>
+        </ul>
+      </div>
+      <div class="h-card">
+        <h3>二、权限与审计：谁做了什么可查</h3>
+        <ul>
+          <li>每个角色只碰得到与他相关的最小范围；AI 不能给自己或他人扩权。</li>
+          <li>每一步动作、依据与签字留痕，可按课回放到具体环节与操作人。</li>
+          <li>数据访问与权限变更各有独立日志，管理员可导出审计记录。</li>
+          <li>确认类操作留下权威回执；材料一改，旧确认自动失效并提示重签。</li>
+        </ul>
+      </div>
+      <div class="h-card">
+        <h3>三、AI 的红线：这些判定永不进实验</h3>
+        <ul>
+          <li>对外发布：AI 只备稿，发布永远是人的动作。</li>
+          <li>涉及学生的评价、成绩与处分：AI 不生成结论，只汇总可查事实。</li>
+          <li>内容合规判定：命中规则即转人工，AI 不得自行放行。</li>
+          <li>查不到出处的结论：不得作为事实写进课件，也不得用于对外材料。</li>
+          <li>出现权限、策略或数据异常时自动停下并转人工，绝不"带着疑问硬跑"。</li>
+        </ul>
+      </div>
+      <div class="h-card">
+        <h3>四、人工确认点清单：每天真正需要人的几处</h3>
+        <ul>
+          <li>课件定稿确认——每日 1 次，是全天唯一的固定人工动作。</li>
+          <li>合规核验命中规则时的复核——触发式，非每日固定动作。</li>
+          <li>对外发布的最终批准——每次发布前一次，AI 不能代签。</li>
+          <li>权限变更与数据出系统的报批——发生时一次。</li>
+          <li>四类消息之外，AI 的中间步骤不弹窗、不打扰。</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -606,7 +706,7 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
       <thead><tr><th style="width:26%">能力模块</th><th>说明</th></tr></thead>
       <tbody>
         <tr><td class="b">身份与权限体系</td><td>五类角色、家长-孩子关系确认、最小权限投影、全量审计——每个人的每一步都有边界、有记录</td></tr>
-        <tr><td class="b">课件智能准备流水线</td><td>上传 → 解析 → 事实包（可溯源）→ 时长适配 → 意图识别 → 人工把关 → 运营包草稿，AI 完成 90% 以上的准备动作</td></tr>
+        <tr><td class="b">课件智能准备流水线</td><td>上传 → 解析 → 事实包（可溯源）→ 时长适配 → 意图识别 → 人工把关 → 运营包草稿，AI 完成 90% 以上的准备动作<sup class="fn">[3]</sup></td></tr>
         <tr><td class="b">人工把关闸门</td><td>教学确认 / 运营确认 / 站内开放三道闸门；AI 不可代签；批准绑定版本，材料一变旧批准自动失效</td></tr>
         <tr><td class="b">执行引擎与恢复</td><td>AI 任务连续执行、中断自动恢复、一键紧急停止；重复执行不产生重复动作</td></tr>
         <tr><td class="b">运营入口（Web + 手机）</td><td>工作画布与行动队列：意图输入、结果预览、三张确认卡、进度与回执一屏掌握</td></tr>
@@ -617,6 +717,26 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
         <tr><td class="b">安全与合规护栏</td><td>儿童信息最小投影、异常即停、来源不可篡改、操作全程留痕——安全是默认设置，不是附加项</td></tr>
       </tbody>
     </table>
+  </div>
+</section>
+
+<!-- ================= 7c. 能力 → 口径 → 验收线（P1） ================= -->
+<section id="criteria">
+  <div class="wrap">
+    <h2>每项能力都有口径与验收线：<span class="accent">您可以代入自己的数字</span></h2>
+    <p class="sub">不谈"提升几倍"——只写清楚"怎么算"和"达到什么算过关"，您用自己学校的课时数与教师人数就能核算。</p>
+    <table class="crit">
+      <thead><tr><th>能力</th><th>口径（怎么算）</th><th>验收线（达到什么算过关）</th></tr></thead>
+      <tbody>
+        <tr><td>备课准备自动化</td><td>从布置课题到产出可评审的课件初稿，Agent 独立完成的动作数 ÷ 全流程动作总数</td><td>人只需 1 次定稿确认；初稿里每条要点都能追到原文出处</td></tr>
+        <tr><td>结论可追溯</td><td>可回查到原文出处的结论数 ÷ 全部结论数</td><td>100%——查不到出处的结论不得写进课件</td></tr>
+        <tr><td>人机分工把关</td><td>对外发布的内容中，经人确认后才发布的比例</td><td>100%——AI 只备稿，发布权永远在人</td></tr>
+        <tr><td>权限最小化</td><td>越权访问被拦截次数 ÷ 越权尝试次数</td><td>100% 被拦截；AI 无法给自己或他人扩权</td></tr>
+        <tr><td>越用越聪明</td><td>按月统计被复用的校本课件与核验结论条数</td><td>试点期内每月新增复用 ≥ 1 次，且逐月不下降</td></tr>
+        <tr><td>一天的人工动作数</td><td>每节课从接到任务到发布，必须由人完成的动作次数</td><td>≤ 1 次（课件定稿确认），其余环节全自动</td></tr>
+      </tbody>
+    </table>
+    <p class="sub" style="margin-top:16px">以上只给口径与验收线，<b>不写"实测提升 X 倍"</b>——请代入您自己的课时数与教师人数自行核算；表中数字的口径与取数时间见页尾「数字口径与来源清单」。</p>
   </div>
 </section>
 
@@ -663,15 +783,15 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
     <p class="sub">xLab 的每一段代码都由 AI Agent 团队在严格工程纪律下完成——这本身就是我们对"AI Agent 落地能力"最直接的证明。</p>
     <div class="grid g4">
       <div class="card"><div class="ico ico-purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 4h10v16H7z" stroke="#5b4bc4" stroke-width="2"/><path d="M10 8h4M10 12h4M10 16h2" stroke="#5b4bc4" stroke-width="2" stroke-linecap="round"/></svg></div><h3>任务书驱动</h3><p>每个模块先写清"做什么、不许做什么、怎么算做好"，AI 再动手</p></div>
-      <div class="card"><div class="ico ico-blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 17l6-6-6-6M14 19h6" stroke="#087ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>质量门自动验</h3><p>100+ 项自动化质量检查、构建与安全检查——不过关不交付</p></div>
+      <div class="card"><div class="ico ico-blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 17l6-6-6-6M14 19h6" stroke="#087ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>质量门自动验</h3><p>100+ 项自动化质量检查、构建与安全检查——不过关不交付<sup class="fn">[4]</sup></p></div>
       <div class="card"><div class="ico ico-green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" stroke="#287a4d" stroke-width="2"/><path d="M9 12l2 2 4-4" stroke="#287a4d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>独立验收</h3><p>做的人和验收的人分开；真人逐项复验，全程记录归档</p></div>
       <div class="card"><div class="ico ico-yellow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#f4a900" stroke-width="2"/><path d="M12 8v4l3 2" stroke="#f4a900" stroke-width="2" stroke-linecap="round"/></svg></div><h3>全链路留痕</h3><p>每个版本冻结指纹、每次修复有诊断与复验记录，随时可审计</p></div>
     </div>
     <div class="kpis" style="margin-top:26px">
-      <div class="kpi"><div class="n">4 大</div><div class="l">核心模块稳定运行</div></div>
-      <div class="kpi"><div class="n">100+</div><div class="l">自动化质量检查项</div></div>
-      <div class="kpi"><div class="n">3 轮</div><div class="l">真人验收 → 修复 → 复验闭环</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">真实数据进入开发环境</div></div>
+      <div class="kpi"><div class="n">4 大<sup class="fn">[7]</sup></div><div class="l">核心模块稳定运行</div></div>
+      <div class="kpi"><div class="n">100+<sup class="fn">[4]</sup></div><div class="l">自动化质量检查项</div></div>
+      <div class="kpi"><div class="n">3 轮<sup class="fn">[8]</sup></div><div class="l">真人验收 → 修复 → 复验闭环</div></div>
+      <div class="kpi"><div class="n">0<sup class="fn">[9]</sup></div><div class="l">真实数据进入开发环境</div></div>
     </div>
   </div>
 </section>
@@ -695,6 +815,22 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
       <div><b>微信</b><span>[微信号占位]</span></div>
       <div><b>邮箱</b><span>[联系邮箱占位]</span></div>
     </div>
+    <div class="src-list" id="sources">
+      <h3>数字口径与来源清单</h3>
+      <ol>
+        <li><b>[1] 过去一节课的准备与协调 ≈ 2 小时以上</b>——口径：人工方式（翻教材/找素材/拼课件 + 找人确认来回）下一节新课从构思到可用的准备与协调耗时；取数时间：2026-09，试点校教研组访谈口径，非逐条秒表实测。</li>
+        <li><b>[2] 现在全天人只动 1 次 ≈ 5 分钟</b>——口径：xLab 流程中"必须由人完成"的动作次数与耗时，即课件定稿确认一处的操作时长；取数时间：2026-09，流程实测（不含人自行阅读课件的思考时间）。</li>
+        <li><b>[3] AI 完成 90% 以上的准备动作</b>——口径：六步流水线中由 Agent 独立完成的动作数 ÷ 全流程动作总数（人只做把关）；取数时间：2026-09。</li>
+        <li><b>[4] 100+ 项自动化质量检查项</b>——口径：每次交付前自动执行的检查、构建与安全检查条目数；取数时间：2026-09，随版本迭代只增不减。</li>
+        <li><b>[5] 6 步 AI 自动完成</b>——口径：课件智能准备流水线的固定阶段数（上传→解析→事实包→时长适配→意图识别→运营包草稿）；取数时间：2026-09。</li>
+        <li><b>[6] 2 次人工确认（最少必要）</b>——口径：流水线中设计上必须由人拍板的最少次数（教师定稿确认 + 运营确认）；取数时间：2026-09。日常一节课通常只触发其中 1 次。</li>
+        <li><b>[7] 4 大核心模块稳定运行</b>——口径：当前上线运行的业务模块数（家长端、运营端、课件流水线、协作与权限）；取数时间：2026-09。</li>
+        <li><b>[8] 3 轮真人验收 → 修复 → 复验闭环</b>——口径：每次交付前"真人按真实路径走查 → 修复 → 复验"的轮次要求；取数时间：2026-09。</li>
+        <li><b>[9] 0 真实数据进入开发环境</b>——口径：开发与演示环境中的真实业务数据条数（一律使用构造数据）；取数时间：2026-09。</li>
+      </ol>
+      <p style="font-size:12.5px;color:#5c677d;margin-top:12px">界面巡览中的界面示意与逐点序列为示意数据，用于说明交互方式，不代表真实教学数据。表中未标注脚注的数字（如课程时长、时间点）为场景举例，不是指标承诺。</p>
+    </div>
+
     <div class="cta-final"><a class="btn-grad" href="#contact">预约演示</a></div>
   </div>
   <footer>
