@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xLab · AI-Native 教育协作平台</title>
+<meta name="description" content="xLab：AI Agent 团队为公益教育打造的协作平台——课件智能准备、人机分工把关、全流程可追溯。">
+<style>
+:root{
+  --purple:#5b4bc4; --purple-deep:#4433a8; --purple-soft:#eeeafd;
+  --blue:#087ea4; --blue-soft:#e4f5fa; --green:#287a4d; --green-soft:#e8f7ef;
+  --yellow:#f4a900; --yellow-soft:#fff5d6; --coral:#c43f57; --coral-soft:#fff0f2;
+  --ink:#1e293b; --muted:#5c677d; --surface:#fff; --canvas:#f7f9ff; --line:#dce2f2;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--canvas);line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:72px 0}
+h1,h2,h3{line-height:1.3;font-weight:800}
+h2{font-size:30px;margin-bottom:8px;letter-spacing:-.5px}
+h2 .accent{color:var(--purple)}
+.sub{color:var(--muted);font-size:15px;margin-bottom:32px}
+p{font-size:15.5px;color:#334155}
+/* ---------- HERO ---------- */
+.hero{background:linear-gradient(160deg,#4433a8 0%,#5b4bc4 55%,#6f5fd6 100%);color:#fff;padding:80px 0 96px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(900px 400px at 85% -10%,rgba(255,255,255,.22),transparent 60%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.hero .logo{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:8px 18px;font-weight:700;font-size:14px;letter-spacing:.5px;backdrop-filter:blur(6px)}
+.hero .logo svg{display:block}
+.hero h1{font-size:46px;margin:26px 0 14px;letter-spacing:-1px}
+.hero h1 span{background:linear-gradient(90deg,#ffe9a8,#ffd166);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{font-size:17px;color:#e6e2fb;max-width:760px}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 16px;font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:7px}
+.badge i{width:7px;height:7px;border-radius:50%;background:#7ef0b2;display:inline-block}
+/* ---------- 声明条 ---------- */
+.statement{background:#fff;border:1px solid var(--line);border-left:6px solid var(--purple);border-radius:12px;padding:18px 22px;margin-top:-40px;position:relative;z-index:2;box-shadow:0 14px 40px rgba(68,51,168,.10);font-size:14.5px;color:#3b4664}
+.statement b{color:var(--purple-deep)}
+/* ---------- 卡片 ---------- */
+.grid{display:grid;gap:18px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 8px 26px rgba(30,41,59,.05)}
+.card h3{font-size:16.5px;margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted)}
+.card .ico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.ico-purple{background:var(--purple-soft)}.ico-blue{background:var(--blue-soft)}.ico-green{background:var(--green-soft)}.ico-yellow{background:var(--yellow-soft)}.ico-coral{background:var(--coral-soft)}
+/* ---------- 表格 ---------- */
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14px}
+th{background:var(--purple-soft);color:var(--purple-deep);text-align:left;padding:13px 16px;font-size:13px;letter-spacing:.4px}
+td{padding:12px 16px;border-top:1px solid var(--line);color:#334155;vertical-align:top}
+td.b{font-weight:700;color:var(--ink)}
+.pill{display:inline-block;padding:2px 11px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.pill-live{background:var(--green-soft);color:var(--green)}
+.pill-build{background:var(--blue-soft);color:var(--blue)}
+.pill-plan{background:var(--yellow-soft);color:#9a6b00}
+/* ---------- SVG 图容器 ---------- */
+.fig{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:0 8px 26px rgba(30,41,59,.05)}
+.fig figcaption{font-size:13px;color:var(--muted);text-align:center;margin-top:14px}
+.fig svg{width:100%;height:auto;display:block}
+/* ---------- 时间轴 ---------- */
+.tl{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.tl .col{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.tl .col h3{font-size:15px;margin-bottom:14px}
+.tl .old h3{color:var(--coral)}.tl .new h3{color:var(--green)}
+.tl ul{list-style:none}
+.tl li{font-size:14px;color:#334155;padding:9px 0 9px 26px;position:relative;border-bottom:1px dashed var(--line)}
+.tl li:last-child{border-bottom:0}
+.tl li:before{content:"";position:absolute;left:4px;top:16px;width:9px;height:9px;border-radius:50%}
+.tl .old li:before{background:var(--coral)}.tl .new li:before{background:var(--green)}
+.tl .tot{margin-top:14px;font-weight:800;font-size:14px}
+.tl .old .tot{color:var(--coral)}.tl .new .tot{color:var(--green)}
+/* ---------- CTA ---------- */
+.cta{background:linear-gradient(160deg,#4433a8,#5b4bc4);border-radius:22px;color:#fff;padding:52px 40px;text-align:center;box-shadow:0 20px 50px rgba(68,51,168,.28)}
+.cta h2{color:#fff}
+.cta p{color:#ddd8f6;max-width:640px;margin:0 auto 26px}
+.btn{display:inline-block;background:#fff;color:var(--purple-deep);font-weight:800;padding:14px 38px;border-radius:999px;text-decoration:none;font-size:15px;box-shadow:0 10px 26px rgba(0,0,0,.18)}
+.note{font-size:12.5px;color:#b9b2e8;margin-top:16px}
+footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:30px 0 6px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;text-align:center}
+.kpi .n{font-size:26px;font-weight:900;color:var(--purple-deep);letter-spacing:-.5px}
+.kpi .l{font-size:12.5px;color:var(--muted);margin-top:4px}
+@media(max-width:900px){
+  .g3,.g4,.tl{grid-template-columns:1fr 1fr}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:34px}
+}
+@media(max-width:620px){
+  .g3,.g4,.g2,.tl{grid-template-columns:1fr}
+  section{padding:52px 0}
+  h2{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap">
+    <span class="logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2"/><path d="M8 15.5c1.2 1.2 2.6 1.8 4 1.8s2.8-.6 4-1.8M9 9.5h.01M15 9.5h.01" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      xLab · AI-Native 教育协作平台
+    </span>
+    <h1>一位老师，一支<br><span>AI Agent 团队</span>协同备课</h1>
+    <p class="lead">xLab 把"课件准备、课程组织、内容核验"交给 AI Agent 完成绝大部分工作——老师与运营只需在最关键的两三个关口拍板。全流程可追溯、权限最小化、关键动作永不外包给 AI。</p>
+    <div class="badges">
+      <span class="badge"><i></i>三端协同（家长 / 运营 Web / 运营手机）</span>
+      <span class="badge"><i></i>人机分工把关</span>
+      <span class="badge"><i></i>AI 不能代替人签字</span>
+      <span class="badge"><i></i>全流程可追溯</span>
+      <span class="badge"><i></i>AI Agent 团队开发交付</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="statement">
+    <b>关于本页：</b>本页如实呈现 xLab 的完整能力版图，并明确区分<b>「已交付运行」</b>、<b>「建设中」</b>与<b>「规划中」</b>——这是我们对客户的承诺：说到的能力，都拿得出测试与验收记录。
+  </div>
+</div>
+
+<!-- ================= 1. 产品是什么 ================= -->
+<section>
+  <div class="wrap">
+    <h2>一个平台，<span class="accent">三类使用者，一次完整协作</span></h2>
+    <p class="sub">公益教育场景里的真实链路：老师备课、运营组织课程、家长与孩子参与——原本散落在聊天记录和表格里的工作，收进同一条可追溯的流水线。</p>
+    <div class="grid g3">
+      <div class="card">
+        <div class="ico ico-purple">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h7" stroke="#5b4bc4" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>运营管理 Web</h3>
+        <p>家委、老师、志愿者的多任务工作台：课件准备、决策收件箱、审核记录，一屏掌握"今天先处理什么"。</p>
+      </div>
+      <div class="card">
+        <div class="ico ico-blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="#087ea4" stroke-width="2"/><path d="M10.5 18.5h3" stroke="#087ea4" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>运营管理手机端</h3>
+        <p>按"时间与风险"自动排序的行动队列：现场签到、待确认事项、上传与回执，打开就知道下一步做什么。</p>
+      </div>
+      <div class="card">
+        <div class="ico ico-green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-7-10a7 7 0 0 1 14 0c0 5.4-7 10-7 10z" stroke="#287a4d" stroke-width="2"/><circle cx="12" cy="10.5" r="2.5" stroke="#287a4d" stroke-width="2"/></svg>
+        </div>
+        <h3>家庭参与端</h3>
+        <p>家长与孩子看课程、报名、查看作品；家长与孩子的关系绑定须经人工确认，儿童信息按最小权限投影。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2. 核心能力：课件流水线 ================= -->
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <h2>核心能力：<span class="accent">课件智能准备流水线</span></h2>
+    <p class="sub">老师上传一份课件，AI 走完六步，中间只停下来两次等人拍板——每一次拍板都留权威回执。</p>
+    <figure class="fig">
+      <svg viewBox="0 0 1040 300" role="img" aria-label="课件准备流水线流程图">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5b4bc4"/></marker>
+        </defs>
+        <!-- steps -->
+        <g font-family="inherit">
+          <!-- 1 -->
+          <rect x="16" y="96" width="128" height="86" rx="14" fill="#eeeafd" stroke="#5b4bc4" stroke-width="1.5"/>
+          <text x="80" y="130" text-anchor="middle" font-size="14" font-weight="700" fill="#4433a8">上传课件</text>
+          <text x="80" y="152" text-anchor="middle" font-size="11.5" fill="#5c677d">MD / PPTX</text>
+          <line x1="148" y1="139" x2="176" y2="139" stroke="#5b4bc4" stroke-width="2" marker-end="url(#arr)"/>
+          <!-- 2 -->
+          <rect x="180" y="96" width="128" height="86" rx="14" fill="#f7f9ff" stroke="#dce2f2"/>
+          <text x="244" y="130" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">自动解析</text>
+          <text x="244" y="152" text-anchor="middle" font-size="11.5" fill="#5c677d">抽取事实与来源</text>
+          <line x1="312" y1="139" x2="340" y2="139" stroke="#5b4bc4" stroke-width="2" marker-end="url(#arr)"/>
+          <!-- 3 -->
+          <rect x="344" y="96" width="128" height="86" rx="14" fill="#f7f9ff" stroke="#dce2f2"/>
+          <text x="408" y="130" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">事实包</text>
+          <text x="408" y="152" text-anchor="middle" font-size="11.5" fill="#5c677d">每条可回溯原文</text>
+          <line x1="476" y1="139" x2="504" y2="139" stroke="#5b4bc4" stroke-width="2" marker-end="url(#arr)"/>
+          <!-- 4 -->
+          <rect x="508" y="96" width="128" height="86" rx="14" fill="#f7f9ff" stroke="#dce2f2"/>
+          <text x="572" y="130" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">时长适配</text>
+          <text x="572" y="152" text-anchor="middle" font-size="11.5" fill="#5c677d">流程与意图识别</text>
+          <line x1="640" y1="139" x2="668" y2="139" stroke="#5b4bc4" stroke-width="2" marker-end="url(#arr)"/>
+          <!-- 5 gate -->
+          <rect x="672" y="76" width="150" height="126" rx="14" fill="#fff5d6" stroke="#f4a900" stroke-width="2"/>
+          <text x="747" y="108" text-anchor="middle" font-size="14" font-weight="800" fill="#9a6b00">人工把关 ×2</text>
+          <text x="747" y="132" text-anchor="middle" font-size="11.5" fill="#7a5500">① 老师教学确认</text>
+          <text x="747" y="152" text-anchor="middle" font-size="11.5" fill="#7a5500">② 运营事实确认</text>
+          <text x="747" y="176" text-anchor="middle" font-size="11" fill="#9a6b00">材料一变，旧批准自动失效</text>
+          <line x1="826" y1="139" x2="854" y2="139" stroke="#5b4bc4" stroke-width="2" marker-end="url(#arr)"/>
+          <!-- 6 -->
+          <rect x="858" y="96" width="164" height="86" rx="14" fill="#e8f7ef" stroke="#287a4d" stroke-width="1.5"/>
+          <text x="940" y="130" text-anchor="middle" font-size="14" font-weight="700" fill="#287a4d">运营包草稿</text>
+          <text x="940" y="152" text-anchor="middle" font-size="11.5" fill="#3c6b52">草稿态 · 永不自动外发</text>
+        </g>
+        <!-- baseline roles -->
+        <rect x="16" y="216" width="1006" height="52" rx="12" fill="#f7f9ff" stroke="#dce2f2"/>
+        <text x="36" y="247" font-size="12.5" fill="#5c677d">AI 职责：解析 · 提取 · 适配 · 起草（连续执行，不打扰人）</text>
+        <text x="560" y="247" font-size="12.5" fill="#9a6b00" font-weight="700">人的职责：两次把关确认（不可被 AI 替代）</text>
+        <text x="880" y="247" font-size="12.5" fill="#287a4d" font-weight="700">产出：运营包（仅草稿）</text>
+      </svg>
+      <figcaption>课件准备流水线：AI 连续执行六步，人只在两个关键关口拍板</figcaption>
+    </figure>
+    <div class="kpis">
+      <div class="kpi"><div class="n">6 步</div><div class="l">AI 自动完成</div></div>
+      <div class="kpi"><div class="n">2 次</div><div class="l">人工确认（最少必要）</div></div>
+      <div class="kpi"><div class="n">100%</div><div class="l">事实可回溯原文</div></div>
+      <div class="kpi"><div class="n">0</div><div class="l">AI 可代签的动作</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. 人机分工 ================= -->
+<section>
+  <div class="wrap">
+    <h2>设计内核：<span class="accent">什么交给 AI，什么必须人来</span></h2>
+    <p class="sub">我们把"AI 能干什么、必须谁签字"写成了制度，而不是靠提醒。这套分级是平台的底层规则。</p>
+    <figure class="fig">
+      <svg viewBox="0 0 1040 340" role="img" aria-label="人机分工分级图">
+        <g font-family="inherit">
+          <!-- AI zone -->
+          <rect x="16" y="20" width="620" height="150" rx="16" fill="#eeeafd" stroke="#5b4bc4" stroke-width="1.5"/>
+          <text x="40" y="52" font-size="15" font-weight="800" fill="#4433a8">AI 自动区（连续执行，不打扰人）</text>
+          <g font-size="12.5" fill="#312e6b">
+            <rect x="42" y="70" width="176" height="40" rx="10" fill="#fff" stroke="#c9c2f0"/><text x="130" y="95" text-anchor="middle">读取 · 解析 · 分类 · 对账</text>
+            <rect x="232" y="70" width="176" height="40" rx="10" fill="#fff" stroke="#c9c2f0"/><text x="320" y="95" text-anchor="middle">生成草稿 · 预览 · 差异</text>
+            <rect x="422" y="70" width="192" height="40" rx="10" fill="#fff" stroke="#c9c2f0"/><text x="518" y="95" text-anchor="middle">内部任务 · 步骤编排 · 重试</text>
+          </g>
+          <text x="40" y="146" font-size="12" fill="#5c677d">规则内自动执行：预算/幂等/权限检查通过即继续，全程留痕</text>
+          <!-- Human zone -->
+          <rect x="656" y="20" width="368" height="150" rx="16" fill="#fff5d6" stroke="#f4a900" stroke-width="1.5"/>
+          <text x="680" y="52" font-size="15" font-weight="800" fill="#9a6b00">人类把关区（每次具名决定）</text>
+          <g font-size="12.5" fill="#6b4e00">
+            <rect x="682" y="70" width="158" height="40" rx="10" fill="#fff" stroke="#efd9a3"/><text x="761" y="95" text-anchor="middle">教学事实确认</text>
+            <rect x="850" y="70" width="152" height="40" rx="10" fill="#fff" stroke="#efd9a3"/><text x="926" y="95" text-anchor="middle">运营与开放决定</text>
+          </g>
+          <text x="680" y="146" font-size="12" fill="#7a5500">承诺 · 授权 · 对外发布 · 涉及儿童的决定——AI 永不代签</text>
+          <!-- flow arrows -->
+          <path d="M320 176 L320 208 L130 208 L130 236" stroke="#5b4bc4" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+          <path d="M850 176 L850 208 L916 208 L916 236" stroke="#f4a900" stroke-width="2" fill="none"/>
+          <!-- bottom principles -->
+          <rect x="16" y="240" width="1006" height="82" rx="14" fill="#fff" stroke="#dce2f2"/>
+          <text x="40" y="270" font-size="13" font-weight="700" fill="#1e293b">三条不可协商的底线</text>
+          <text x="40" y="296" font-size="12.5" fill="#5c677d">① 异常即停：任何权限/策略/数据异常，自动转人工，绝不"降级硬跑"　② 权限最小：AI 不能扩权、不能越范围碰数据　③ 每次都算数：人的每次确认绑定当次版本，材料变则失效</text>
+        </g>
+      </svg>
+      <figcaption>人机分工分级：AI 连续执行，人类在关键关口具名拍板</figcaption>
+    </figure>
+  </div>
+</section>
+<!-- ================= 4. Agent 矩阵与多人协作 ================= -->
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <h2>协作引擎：<span class="accent">Agent 矩阵 + 一条总工作流线</span></h2>
+    <p class="sub">平台 Agent 按职责分工；一件事一条流程线，前一个人做完自动交给下一个人——线上任务由 AI 执行，线下任务人到场完成并留回执。</p>
+    <figure class="fig">
+      <svg viewBox="0 0 1040 380" role="img" aria-label="Agent 矩阵与协作流程线">
+        <g font-family="inherit">
+          <!-- agents row -->
+          <text x="16" y="34" font-size="14" font-weight="800" fill="#1e293b">平台 Agent 矩阵（按职责分工）</text>
+          <g>
+            <rect x="16" y="50" width="238" height="86" rx="14" fill="#eeeafd" stroke="#5b4bc4" stroke-width="1.5"/>
+            <text x="135" y="82" text-anchor="middle" font-size="14" font-weight="700" fill="#4433a8">课程准备 Agent</text>
+            <text x="135" y="106" text-anchor="middle" font-size="11.5" fill="#5c677d">课件理解 · 事实包 · 运营包</text>
+
+            <rect x="268" y="50" width="238" height="86" rx="14" fill="#e4f5fa" stroke="#087ea4" stroke-width="1.5"/>
+            <text x="387" y="82" text-anchor="middle" font-size="14" font-weight="700" fill="#08657f">内容运营 Agent</text>
+            <text x="387" y="106" text-anchor="middle" font-size="11.5" fill="#5c677d">多渠道草稿 · 素材编排</text>
+
+            <rect x="520" y="50" width="238" height="86" rx="14" fill="#e8f7ef" stroke="#287a4d" stroke-width="1.5"/>
+            <text x="639" y="82" text-anchor="middle" font-size="14" font-weight="700" fill="#287a4d">作品展厅 Agent</text>
+            <text x="639" y="106" text-anchor="middle" font-size="11.5" fill="#5c677d">展示方式 · 安全降级</text>
+
+            <rect x="772" y="50" width="252" height="86" rx="14" fill="#fff5d6" stroke="#f4a900" stroke-width="1.5"/>
+            <text x="898" y="82" text-anchor="middle" font-size="14" font-weight="700" fill="#9a6b00">授权与安全 Agent</text>
+            <text x="898" y="106" text-anchor="middle" font-size="11.5" fill="#5c677d">策略检查 · 越权阻断 · 审计</text>
+          </g>
+          <!-- workflow line -->
+          <text x="16" y="190" font-size="14" font-weight="800" fill="#1e293b">一件事的推进线（示例：筹备一次课程）</text>
+          <rect x="16" y="208" width="1006" height="150" rx="16" fill="#f7f9ff" stroke="#dce2f2"/>
+          <!-- nodes -->
+          <g font-size="12.5">
+            <circle cx="110" cy="262" r="17" fill="#287a4d"/><text x="110" y="267" text-anchor="middle" font-size="13" fill="#fff">✓</text>
+            <text x="110" y="300" text-anchor="middle" fill="#1e293b" font-weight="700">课件整理</text>
+            <text x="110" y="319" text-anchor="middle" fill="#5c677d" font-size="11">老师 · 已完成</text>
+
+            <line x1="140" y1="262" x2="228" y2="262" stroke="#5b4bc4" stroke-width="2" stroke-dasharray="5 4"/>
+
+            <circle cx="258" cy="262" r="17" fill="#5b4bc4"/><text x="258" y="267" text-anchor="middle" font-size="12" fill="#fff">▶</text>
+            <text x="258" y="300" text-anchor="middle" fill="#1e293b" font-weight="700">内容核验</text>
+            <text x="258" y="319" text-anchor="middle" fill="#9a6b00" font-size="11">运营 · 待你确认</text>
+
+            <line x1="288" y1="262" x2="376" y2="262" stroke="#c9c2f0" stroke-width="2" stroke-dasharray="5 4"/>
+
+            <circle cx="406" cy="262" r="17" fill="#fff" stroke="#c9c2f0" stroke-width="2"/><text x="406" y="267" text-anchor="middle" font-size="12" fill="#5c677d">3</text>
+            <text x="406" y="300" text-anchor="middle" fill="#1e293b" font-weight="700">现场物料</text>
+            <text x="406" y="319" text-anchor="middle" fill="#5c677d" font-size="11">线下 · 通知+回执</text>
+
+            <line x1="436" y1="262" x2="524" y2="262" stroke="#c9c2f0" stroke-width="2" stroke-dasharray="5 4"/>
+
+            <circle cx="554" cy="262" r="17" fill="#fff" stroke="#c9c2f0" stroke-width="2"/><text x="554" y="267" text-anchor="middle" font-size="12" fill="#5c677d">4</text>
+            <text x="554" y="300" text-anchor="middle" fill="#1e293b" font-weight="700">课程开放</text>
+            <text x="554" y="319" text-anchor="middle" fill="#9a6b00" font-size="11">运营 · 人工决定</text>
+
+            <line x1="584" y1="262" x2="672" y2="262" stroke="#c9c2f0" stroke-width="2" stroke-dasharray="5 4"/>
+
+            <circle cx="702" cy="262" r="17" fill="#fff" stroke="#c9c2f0" stroke-width="2"/><text x="702" y="267" text-anchor="middle" font-size="12" fill="#5c677d">5</text>
+            <text x="702" y="300" text-anchor="middle" fill="#1e293b" font-weight="700">课前提醒</text>
+            <text x="702" y="319" text-anchor="middle" fill="#5c677d" font-size="11">AI 生成 · 人确认发送</text>
+          </g>
+          <text x="880" y="268" font-size="11.5" fill="#5c677d">线上任务 → Agent 执行</text>
+          <text x="880" y="290" font-size="11.5" fill="#5c677d">线下任务 → 通知人到场</text>
+          <text x="880" y="312" font-size="11.5" fill="#5c677d">进度全成员可见</text>
+        </g>
+      </svg>
+      <figcaption>四个职责 Agent + 一条全成员可见的工作流线（规划中能力）</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= 5. 使用场景 ================= -->
+<section>
+  <div class="wrap">
+    <h2>一天的变化：<span class="accent">老师的一节新课</span></h2>
+    <p class="sub">同一件事——从"有份课件"到"课程准备好了"，对比一下人工组织和 xLab 协作的差别。</p>
+    <div class="tl">
+      <div class="col old">
+        <h3>传统方式</h3>
+        <ul>
+          <li>在聊天记录里翻上次的流程和物料清单</li>
+          <li>手工梳理课件要点，反复核对数字与说法</li>
+          <li>找人确认内容 → 等回复 → 再改</li>
+          <li>流程时长凭感觉估，常常"讲到一半发现讲不完"</li>
+          <li>开课决定散落在微信里，出了事查不到谁定的</li>
+        </ul>
+        <div class="tot">结果：流程靠人记，责任靠自觉</div>
+      </div>
+      <div class="col new">
+        <h3>xLab 协作</h3>
+        <ul>
+          <li>上传课件，AI 自动提取要点并逐条标注原文出处</li>
+          <li>AI 自动适配时长、给出流程编排与差别提示</li>
+          <li>待确认事项自动进入把关人的收件箱，一次看全</li>
+          <li>确认即留权威回执；材料一改，旧确认自动失效</li>
+          <li>进度线上留痕：谁在等谁、下一步轮到谁，一眼可见</li>
+        </ul>
+        <div class="tot">结果：流程自动推进，责任落纸留痕</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6. 设计思想 ================= -->
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <h2>六条设计底线：<span class="accent">让 AI 值得信任的方式</span></h2>
+    <p class="sub">不是口号，是写进代码与流程的规则——每条都有测试与验收记录背书。</p>
+    <div class="grid g3">
+      <div class="card"><div class="ico ico-purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5" stroke="#5b4bc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>意图驱动</h3><p>说一句话说明目标，AI 负责规划与执行；人不需要学复杂的表单操作。</p></div>
+      <div class="card"><div class="ico ico-yellow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 16H3z" stroke="#f4a900" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="#f4a900" stroke-width="2" stroke-linecap="round"/></svg></div><h3>异常即停</h3><p>权限、策略或数据出现异常时自动转人工——绝不"带着疑问硬跑"。</p></div>
+      <div class="card"><div class="ico ico-green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#287a4d" stroke-width="2"/><path d="M16 16l5 5" stroke="#287a4d" stroke-width="2" stroke-linecap="round"/></svg></div><h3>来源可查</h3><p>AI 的每个结论都能回查原始出处；查不到出处的，不许当作事实用。</p></div>
+      <div class="card"><div class="ico ico-blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="#087ea4" stroke-width="2" stroke-linecap="round"/><rect x="5" y="11" width="14" height="9" rx="2.5" stroke="#087ea4" stroke-width="2"/></svg></div><h3>权限最小化</h3><p>每个角色只碰得到与他相关的最小范围；AI 永远不能给自己扩权。</p></div>
+      <div class="card"><div class="ico ico-purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h9M4 18h5" stroke="#5b4bc4" stroke-width="2" stroke-linecap="round"/></svg></div><h3>零打扰通知</h3><p>人只收到"待决定、异常、到期、完成"四类消息；AI 的中间步骤不弹窗。</p></div>
+      <div class="card"><div class="ico ico-coral"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z" stroke="#c43f57" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#c43f57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>儿童优先</h3><p>涉及孩子的信息按最小权限投影；对外发布永远是人的决定，AI 只备稿。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7. 全量能力表 ================= -->
+<section>
+  <div class="wrap">
+    <h2>全量能力版图：<span class="accent">已交付 · 建设中 · 规划中</span></h2>
+    <p class="sub">我们如实标注每项能力的状态——已交付的都拿得出测试与独立验收记录。</p>
+    <table>
+      <thead><tr><th style="width:26%">能力模块</th><th style="width:52%">说明</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td class="b">身份与权限体系</td><td>五类角色、家长-孩子关系确认、最小权限投影、全量审计；已完成独立验收</td><td><span class="pill pill-live">已交付</span></td></tr>
+        <tr><td class="b">课件智能准备流水线</td><td>上传 → 解析 → 事实包（可溯源）→ 时长适配 → 意图识别 → 人工把关 → 运营包草稿</td><td><span class="pill pill-live">已交付</span></td></tr>
+        <tr><td class="b">人工把关闸门</td><td>教学确认 / 运营确认 / 站内开放三道闸门；AI 不可代签；批准绑定版本，材料变即失效</td><td><span class="pill pill-live">已交付</span></td></tr>
+        <tr><td class="b">执行引擎与恢复</td><td>任务幂等执行、中断恢复、紧急停止；重复执行不产生重复副作用</td><td><span class="pill pill-live">已交付</span></td></tr>
+        <tr><td class="b">运营入口界面</td><td>运营 Web 工作画布与手机行动队列：意图输入、预览、三张确认卡、进度回执</td><td><span class="pill pill-build">建设中</span></td></tr>
+        <tr><td class="b">探索报（儿童科学周刊）</td><td>选题 → 来源核验 → 八维评分 → 编辑复核 → 人工发布门，面向孩子的安全内容流水线</td><td><span class="pill pill-plan">规划中</span></td></tr>
+        <tr><td class="b">多人协作总工作流线</td><td>一事一线：自动交接、双通道通知、接受/退回、线上线下统一进度视图</td><td><span class="pill pill-plan">规划中</span></td></tr>
+        <tr><td class="b">个人专属 Agent</td><td>每位协作者名下 Agent：以自己的授权运行，跨人交付可追溯</td><td><span class="pill pill-plan">规划中</span></td></tr>
+        <tr><td class="b">真实试点与部署</td><td>真实课程试点、通知渠道、生产环境（待授权启动）</td><td><span class="pill pill-plan">规划中</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 8. 开发能力 ================= -->
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <h2>幕后：<span class="accent">这套系统本身，就是 AI Agent 开发的</span></h2>
+    <p class="sub">xLab 的每一段代码都由 AI Agent 团队在严格工程纪律下完成——这本身就是我们对"AI Agent 落地能力"最直接的证明。</p>
+    <div class="grid g4">
+      <div class="card"><div class="ico ico-purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 4h10v16H7z" stroke="#5b4bc4" stroke-width="2"/><path d="M10 8h4M10 12h4M10 16h2" stroke="#5b4bc4" stroke-width="2" stroke-linecap="round"/></svg></div><h3>任务书驱动</h3><p>每个模块先写清"做什么、不许做什么、怎么验收"，AI 再动手</p></div>
+      <div class="card"><div class="ico ico-blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 17l6-6-6-6M14 19h6" stroke="#087ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>质量门自动验</h3><p>契约测试 100+ 项、类型检查、构建、安全检查——不过门不提交</p></div>
+      <div class="card"><div class="ico ico-green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" stroke="#287a4d" stroke-width="2"/><path d="M9 12l2 2 4-4" stroke="#287a4d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>独立验收</h3><p>写完的人和验收的人分开；真人逐项复验，验收记录归档</p></div>
+      <div class="card"><div class="ico ico-yellow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#f4a900" stroke-width="2"/><path d="M12 8v4l3 2" stroke="#f4a900" stroke-width="2" stroke-linecap="round"/></svg></div><h3>全链路留痕</h3><p>每个版本冻结指纹、每次修复有诊断与复验记录，随时可审计</p></div>
+    </div>
+    <div class="kpis" style="margin-top:26px">
+      <div class="kpi"><div class="n">4 个</div><div class="l">已交付模块（含独立验收）</div></div>
+      <div class="kpi"><div class="n">100+</div><div class="l">自动化契约测试</div></div>
+      <div class="kpi"><div class="n">3 轮</div><div class="l">真人验收 → 修复 → 复验闭环</div></div>
+      <div class="kpi"><div class="n">0</div><div class="l">真实数据进入开发环境</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 9. CTA ================= -->
+<section>
+  <div class="wrap">
+    <div class="cta">
+      <h2>让 AI 承担工作，让人守住判断</h2>
+      <p>xLab 正在寻找首批试点合作学校与公益组织。欢迎预约演示：我们会用你的真实场景，现场跑一遍从课件到课程准备的完整流程。</p>
+      <a class="btn" href="mailto:联系邮箱占位">预约演示</a>
+      <p class="note">联系方式占位：请替换为您的电话 / 微信 / 邮箱</p>
+    </div>
+  </div>
+  <footer>
+    <p>xLab · AI-Native 教育协作平台　|　本页所有界面示意均为设计稿，正式产品以演示版本为准</p>
+  </footer>
+</section>
+
+</body>
+</html>
+
