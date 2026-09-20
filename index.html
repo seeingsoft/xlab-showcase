@@ -14,7 +14,7 @@
   --radius:16px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--canvas);line-height:1.75;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 section{padding:72px 0}
@@ -24,7 +24,7 @@ h2 .accent{color:var(--purple)}
 .sub{color:var(--muted);font-size:15px;margin-bottom:32px}
 p{font-size:15.5px;color:#334155}
 /* ---------- HERO ---------- */
-.hero{background:linear-gradient(160deg,#4433a8 0%,#5b4bc4 55%,#6f5fd6 100%);color:#fff;padding:80px 0 96px;position:relative;overflow:hidden}
+.hero{background:linear-gradient(160deg,#4433a8 0%,#5b4bc4 55%,#6f5fd6 100%);color:#fff;padding:144px 0 96px;position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;inset:0;background:radial-gradient(900px 400px at 85% -10%,rgba(255,255,255,.22),transparent 60%);pointer-events:none}
 .hero .wrap{position:relative;z-index:1}
 .hero .logo{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:8px 18px;font-weight:700;font-size:14px;letter-spacing:.5px;backdrop-filter:blur(6px)}
@@ -94,9 +94,61 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
   section{padding:52px 0}
   h2{font-size:24px}
 }
+/* ---------- 统一顶栏（与 AI 招聘页 pitch 同款；令牌就近作用域，不影响页面既有配色） ---------- */
+header.nav{
+  --nv-bg:#0b1120; --nv-panel-2:rgba(255,255,255,.06); --nv-line:rgba(255,255,255,.10);
+  --nv-txt-dim:#94a3b8; --nv-txt-hi:#e8eef8; --nv-cyan:#22d3ee;
+  --nv-grad:linear-gradient(135deg,#22d3ee 0%,#6366f1 100%);
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(11,17,32,.78);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--nv-line);
+}
+header.nav .nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;gap:18px}
+header.nav .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--nv-txt-hi);font-size:15px;white-space:nowrap;line-height:1.4}
+header.nav .brand .nm{white-space:nowrap}
+header.nav .brand .dot{margin:0;width:11px;height:11px;border-radius:50%;background:var(--nv-grad);box-shadow:0 0 0 4px rgba(34,211,238,.14),0 0 18px rgba(34,211,238,.7);flex:none}
+header.nav .brand .sub{margin:0;color:var(--nv-txt-dim);font-weight:500;font-size:12.5px;line-height:1.4}
+header.nav .nav-links{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0}
+header.nav .nav-links::-webkit-scrollbar{display:none}
+header.nav .nav-links a{padding:7px 11px;border-radius:8px;font-size:13px;color:var(--nv-txt-dim);white-space:nowrap;text-decoration:none;transition:background .2s,color .2s}
+header.nav .nav-links a:hover{background:var(--nv-panel-2);color:var(--nv-txt-hi);text-decoration:none}
+header.nav .nav-links a.active{background:rgba(34,211,238,.13);color:#a5f3fc}
+header.nav .nav-cta{margin-left:8px;padding:8px 15px;border-radius:9px;font-size:13px;font-weight:600;background:var(--nv-grad);color:#06111d;white-space:nowrap;flex:none;text-decoration:none}
+header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
+@media(max-width:720px){
+  header.nav .nav-inner{gap:10px;padding:0 14px;height:58px}
+  header.nav .brand{font-size:13.5px}
+  header.nav .brand .sub{display:none}
+  header.nav .nav-links{gap:0}
+  header.nav .nav-links a{padding:6px 9px;font-size:12.5px}
+  header.nav .nav-cta{margin-left:6px;padding:7px 11px;font-size:12.5px}
+  .hero{padding-top:130px}
+}
 </style>
 </head>
 <body>
+
+<!-- ================= 统一顶栏（与 AI 招聘页 pitch 同款） ================= -->
+<header class="nav">
+  <div class="nav-inner">
+    <span class="brand"><span class="dot"></span><span class="nm">xLab</span><span class="sub">AI-Native 教育协作平台</span></span>
+    <nav class="nav-links" aria-label="页面导航">
+      <a href="#tour">界面巡览</a>
+      <a href="#users">三类使用者</a>
+      <a href="#core">核心能力</a>
+      <a href="#design">设计内核</a>
+      <a href="#engine">协作引擎</a>
+      <a href="#day">一天的变化</a>
+      <a href="#limits">设计底线</a>
+      <a href="#capability">能力版图</a>
+      <a href="#evolve">越用越聪明</a>
+      <a href="#behind">幕后</a>
+      <a href="#contact">合作</a>
+    </nav>
+    <a class="nav-cta" href="#contact">预约演示</a>
+  </div>
+</header>
 
 <!-- ================= HERO ================= -->
 <header class="hero">
@@ -124,7 +176,7 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
 </div>
 
 <!-- ================= 0. 产品界面巡览（设计稿级示意 · 纵向多屏长图） ================= -->
-<section style="padding-top:56px">
+<section id="tour" style="padding-top:56px">
   <div class="wrap">
     <h2>产品界面巡览：<span class="accent">一屏看懂协作方式</span></h2>
     <p class="sub">以下为系统界面示意——运营工作台、手机行动端与家庭端，全部为设计稿级效果示意，实际以交付版本为准。</p>
@@ -241,7 +293,7 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
 </section>
 
 <!-- ================= 1. 产品是什么 ================= -->
-<section>
+<section id="users">
   <div class="wrap">
     <h2>一个平台，<span class="accent">三类使用者，一次完整协作</span></h2>
     <p class="sub">公益教育场景里的真实链路：老师备课、运营组织课程、家长与孩子参与——原本散落在聊天记录和表格里的工作，收进同一条可追溯的流水线。</p>
@@ -272,7 +324,7 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
 </section>
 
 <!-- ================= 2. 核心能力：课件流水线 ================= -->
-<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+<section id="core" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
     <h2>核心能力：<span class="accent">课件智能准备流水线</span></h2>
     <p class="sub">老师上传一份课件，AI 走完六步，中间只停下来两次等人拍板——每一次拍板都留权威回执。</p>
@@ -333,7 +385,7 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
 </section>
 
 <!-- ================= 3. 人机分工 ================= -->
-<section>
+<section id="design">
   <div class="wrap">
     <h2>设计内核：<span class="accent">什么交给 AI，什么必须人来</span></h2>
     <p class="sub">我们把"AI 能干什么、必须谁签字"写成了制度，而不是靠提醒。这套分级是平台的底层规则。</p>
@@ -371,7 +423,7 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
   </div>
 </section>
 <!-- ================= 4. Agent 矩阵与多人协作 ================= -->
-<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+<section id="engine" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
     <h2>协作引擎：<span class="accent">Agent 矩阵 + 一条总工作流线</span></h2>
     <p class="sub">平台 Agent 按职责分工；一件事一条流程线，前一个人做完自动交给下一个人——线上任务由 AI 执行，线下任务人到场完成并留回执。</p>
@@ -441,7 +493,7 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
 </section>
 
 <!-- ================= 5. 使用场景 ================= -->
-<section>
+<section id="day">
   <div class="wrap">
     <h2>一天的变化：<span class="accent">老师的一节新课</span></h2>
     <p class="sub">同一件事——从"有份课件"到"课程准备好了"，对比一下人工组织和 xLab 协作的差别。</p>
@@ -473,7 +525,7 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
 </section>
 
 <!-- ================= 6. 设计思想 ================= -->
-<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+<section id="limits" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
     <h2>六条设计底线：<span class="accent">让 AI 值得信任的方式</span></h2>
     <p class="sub">不是口号，而是写进系统底层的规则——每条都经过反复验证，稳定运行。</p>
@@ -489,7 +541,7 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
 </section>
 
 <!-- ================= 7. 全量能力表 ================= -->
-<section>
+<section id="capability">
   <div class="wrap">
     <h2>全量能力版图：<span class="accent">一处不漏的系统能力清单</span></h2>
     <p class="sub">从身份权限到内容流水线，从协作引擎到安全护栏——这是 xLab 为教育组织准备的全部能力。</p>
@@ -512,7 +564,7 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
 </section>
 
 <!-- ================= 7b. 越用越聪明 ================= -->
-<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+<section id="evolve" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
     <h2>越用越聪明：<span class="accent">一所学校的经验，长在系统里</span></h2>
     <p class="sub">老师的备课经验不再随人流失——每一节课都在为下一次省力，这是传统工具做不到的自进化能力。</p>
@@ -548,7 +600,7 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
 </section>
 
 <!-- ================= 8. 开发能力 ================= -->
-<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+<section id="behind" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
     <h2>幕后：<span class="accent">这套系统本身，就是 AI Agent 开发的</span></h2>
     <p class="sub">xLab 的每一段代码都由 AI Agent 团队在严格工程纪律下完成——这本身就是我们对"AI Agent 落地能力"最直接的证明。</p>
@@ -568,7 +620,7 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
 </section>
 
 <!-- ================= 9. CTA ================= -->
-<section>
+<section id="contact">
   <div class="wrap">
     <div class="cta">
       <h2>让 AI 承担工作，让人守住判断</h2>
@@ -581,6 +633,85 @@ footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
     <p>xLab · AI-Native 教育协作平台　|　本页所有界面示意均为设计稿，正式产品以演示版本为准</p>
   </footer>
 </section>
+
+<!-- ================= 统一顶栏：滚动高亮（IntersectionObserver · 原生 JS · 零外部依赖） ================= -->
+<script>
+(function () {
+  var navLinks = document.querySelector('header.nav .nav-links');
+  if (!navLinks) { return; }
+  var links = Array.prototype.slice.call(navLinks.querySelectorAll('a[href^="#"]'));
+  if (!links.length) { return; }
+
+  var sections = [];
+  links.forEach(function (a) {
+    var el = document.querySelector(a.getAttribute('href'));
+    if (el && sections.indexOf(el) === -1) { sections.push(el); }
+  });
+  if (!sections.length) { return; }
+
+  var active = null;
+  function activate(el) {
+    if (!el) {                                   /* 带状区域内没有章节（如首屏 hero）→ 不高亮，与招聘页一致 */
+      links.forEach(function (a) { a.classList.remove('active'); });
+      active = null;
+      return;
+    }
+    var link = null;
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href') === '#' + el.id) { link = links[i]; break; }
+    }
+    if (!link || link === active) { return; }
+    links.forEach(function (a) { a.classList.remove('active'); });
+    link.classList.add('active');
+    active = link;
+    /* 窄屏：让高亮项在可横向滚动的导航条内保持可见 */
+    if (navLinks.scrollWidth > navLinks.clientWidth + 2) {
+      navLinks.scrollLeft = Math.max(0,
+        link.offsetLeft - navLinks.offsetLeft - (navLinks.clientWidth - link.offsetWidth) / 2);
+    }
+  }
+
+  /* 视口内「锚点落点下方(88px) ~ 上 45%」这条带状区域命中的章节即当前章节；
+     起点取在 scroll-padding-top:84px 落点之下，避免上一节末尾余边误判；按文档顺序取第一个，稳定不抖动 */
+  var visible = [];
+  function atBottom() {
+    return window.scrollY > 4 &&
+      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+  }
+  function sync() {
+    /* 滚到页底时末节常常顶不到落点，按惯例高亮最后一项（与点击末项锚点后的结果一致） */
+    if (atBottom()) { activate(sections[sections.length - 1]); return; }
+    for (var i = 0; i < sections.length; i++) {
+      if (visible.indexOf(sections[i]) !== -1) { activate(sections[i]); return; }
+    }
+    /* 带内没有「导航已登记」的章节：首屏 hero 段（首个章节之前）取消高亮，与招聘页一致；
+       章节登记稀疏时（如财富页只登记 9/15 节）保留上一项，避免滚动中高亮闪断 */
+    var firstTop = sections[0].getBoundingClientRect().top + window.scrollY;
+    if (window.scrollY + 88 < firstTop) { activate(null); }
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var i = visible.indexOf(e.target);
+      if (e.isIntersecting && i === -1) { visible.push(e.target); }
+      else if (!e.isIntersecting && i !== -1) { visible.splice(i, 1); }
+    });
+    sync();
+  }, { rootMargin: '-88px 0px -55% 0px', threshold: 0 });
+
+  sections.forEach(function (s) { io.observe(s); });
+
+  /* 兜底：到达/离开页底时 IO 不一定再触发，补一次布尔判定（不参与常规高亮的计算） */
+  var bottomFlag = null;
+  function onScroll() {
+    var b = atBottom();
+    if (b !== bottomFlag) { bottomFlag = b; sync(); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 
 </body>
 </html>
