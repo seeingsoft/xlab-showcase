@@ -15,7 +15,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--canvas);line-height:1.75;-webkit-font-smoothing:antialiased}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--canvas);line-height:1.75;-webkit-font-smoothing:antialiased;text-wrap:pretty}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 section{padding:72px 0}
 h1,h2,h3{line-height:1.3;font-weight:800}
@@ -32,9 +32,11 @@ p{font-size:15.5px;color:#334155}
 .hero h1{font-size:46px;margin:26px 0 14px;letter-spacing:-1px}
 .hero h1 span{background:linear-gradient(90deg,#ffe9a8,#ffd166);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .lead{font-size:17px;color:#e6e2fb;max-width:760px}
-.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 16px;font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:7px}
-.badge i{width:7px;height:7px;border-radius:50%;background:#7ef0b2;display:inline-block}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+/* 首屏徽章组：固定 5 个，版式与财富工作台页一致 */
+.badge{background:rgba(10,16,38,.55);border:1px solid rgba(255,255,255,.34);border-radius:12px;padding:12px 18px;min-width:196px}
+.badge b{display:block;font-size:15.5px;font-weight:800;color:#fff;letter-spacing:.2px;margin-bottom:3px}
+.badge span{font-size:12.5px;color:#e6e1fb}
 /* ---------- 声明条 ---------- */
 .statement{background:#fff;border:1px solid var(--line);border-left:6px solid var(--purple);border-radius:12px;padding:18px 22px;margin-top:-40px;position:relative;z-index:2;box-shadow:0 14px 40px rgba(68,51,168,.10);font-size:14.5px;color:#3b4664}
 .statement b{color:var(--purple-deep)}
@@ -79,6 +81,40 @@ td.b{font-weight:700;color:var(--ink)}
 .cta p{color:#ddd8f6;max-width:640px;margin:0 auto 26px}
 .btn{display:inline-block;background:#fff;color:var(--purple-deep);font-weight:800;padding:14px 38px;border-radius:999px;text-decoration:none;font-size:15px;box-shadow:0 10px 26px rgba(0,0,0,.18)}
 .note{font-size:12.5px;color:#b9b2e8;margin-top:16px}
+/* ---------- P0：传统方式 vs 本系统 对比表 ---------- */
+.vs{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14px}
+.vs th,.vs td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.vs th{background:var(--purple-soft);color:var(--purple-deep);font-size:13.5px;font-weight:800}
+.vs th:first-child,.vs td:first-child{width:16%;font-weight:700;color:var(--ink)}
+.vs th:nth-child(2),.vs td:nth-child(2){width:42%}
+.vs th:nth-child(3),.vs td:nth-child(3){width:42%}
+.vs .old{color:#5b3a3a;background:#fdf7f7}
+.vs .new{color:#1d4d38;background:#f4fbf7}
+.vs tr:last-child td{border-bottom:none}
+/* ---------- P0：统一收尾（服务能力 / 联系 / 渐变 CTA） ---------- */
+.svc{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:4px}
+.svc li{background:#fff;border:1px solid var(--line);border-left:5px solid var(--purple);border-radius:12px;padding:16px 18px}
+.svc b{display:block;color:var(--purple-deep);font-size:14.5px;margin-bottom:4px}
+.svc span{font-size:14px;color:#3b4664}
+.contact-block{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:4px}
+.contact-block b{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+.contact-block span{font-size:15px;color:var(--ink);font-weight:700}
+.cta-final{text-align:center;margin-top:32px}
+/* 窄屏：对比表改为纵向堆叠，避免首列被挤成单字宽 */
+@media(max-width:620px){
+  .vs thead{display:none}
+  .vs,.vs tbody,.vs tr,.vs td{display:block;width:auto}
+  .vs tr{border-bottom:1px solid var(--line);padding:8px 0}
+  .vs tr:last-child{border-bottom:none}
+  .vs td,.vs td:first-child,.vs td:nth-child(2),.vs td:nth-child(3){width:auto;max-width:none}
+  .vs td{border-bottom:none;padding:6px 16px}
+  .vs td:first-child{font-weight:800;color:var(--purple-deep);font-size:14.5px;background:#f7f9ff}
+  .vs .old::before{content:"传统方式 · ";font-weight:800}
+  .vs .new::before{content:"xLab · ";font-weight:800}
+}
+.btn-grad{display:inline-block;padding:14px 34px;border-radius:11px;font-size:15px;font-weight:800;background:linear-gradient(135deg,#22d3ee 0%,#6366f1 100%);color:#06111d;text-decoration:none;box-shadow:0 12px 30px rgba(68,51,168,.26)}
+.btn-grad:hover{filter:brightness(1.08)}
+@media(max-width:620px){.svc,.contact-block{grid-template-columns:1fr}}
 footer{padding:40px 0 64px;color:var(--muted);font-size:13px;text-align:center}
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:30px 0 6px}
 .kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;text-align:center}
@@ -100,7 +136,7 @@ header.nav{
   --nv-txt-dim:#94a3b8; --nv-txt-hi:#e8eef8; --nv-cyan:#22d3ee;
   --nv-grad:linear-gradient(135deg,#22d3ee 0%,#6366f1 100%);
   position:fixed;top:0;left:0;right:0;z-index:50;
-  background:rgba(11,17,32,.78);
+  background:rgba(11,17,32,.92);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid var(--nv-line);
 }
@@ -139,6 +175,7 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
       <a href="#core">核心能力</a>
       <a href="#design">设计内核</a>
       <a href="#engine">协作引擎</a>
+      <a href="#versus">对比传统方式</a>
       <a href="#day">一天的变化</a>
       <a href="#limits">设计底线</a>
       <a href="#capability">能力版图</a>
@@ -160,11 +197,11 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
     <h1>一位老师，一支<br><span>AI Agent 团队</span>协同备课</h1>
     <p class="lead">xLab 把"课件准备、课程组织、内容核验"交给 AI Agent 完成绝大部分工作——老师与运营只需在最关键的两三个关口拍板。全流程可追溯、权限最小化、关键动作永不外包给 AI。</p>
     <div class="badges">
-      <span class="badge"><i></i>三端协同（家长 / 运营 Web / 运营手机）</span>
-      <span class="badge"><i></i>人机分工把关</span>
-      <span class="badge"><i></i>AI 不能代替人签字</span>
-      <span class="badge"><i></i>全流程可追溯</span>
-      <span class="badge"><i></i>AI Agent 团队开发交付</span>
+      <span class="badge"><b>端到端闭环</b><span>布置 → 备课 → 把关 → 发布 → 沉淀，一条流程跑完</span></span>
+      <span class="badge"><b>多 Agent 矩阵</b><span>备课 / 组课 / 核验等 Agent 分工协作，并行推进</span></span>
+      <span class="badge"><b>结论可追溯</b><span>依据与签字全留痕，可按课回放到具体环节</span></span>
+      <span class="badge"><b>越用越聪明</b><span>一所学校的经验沉淀成系统能力，越用越顺手</span></span>
+      <span class="badge"><b>全部已上线运行</b><span>本页能力均在真实教育业务中交付使用</span></span>
     </div>
   </div>
 </header>
@@ -492,6 +529,26 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
   </div>
 </section>
 
+<!-- ================= 4b. 传统方式 vs 本系统（P0） ================= -->
+<section id="versus">
+  <div class="wrap">
+    <h2>传统方式 vs 本系统：<span class="accent">七个维度逐行对打</span></h2>
+    <p class="sub">左列是"人工备课 + 通用办公工具"的常规做法，右列是 xLab 的实际动作差异。</p>
+    <table class="vs">
+      <thead><tr><th>对比维度</th><th>传统方式（人工 + 通用工具）</th><th>xLab</th></tr></thead>
+      <tbody>
+        <tr><td>信息从哪来</td><td class="old">老师自己翻教材、找素材、拼课件，资料散落在个人电脑与聊天记录里，找齐一份要翻半天</td><td class="new">教材、题库与校本资料统一入库，Agent 按课程目标取用并逐条标注来源</td></tr>
+        <tr><td>人要做多少</td><td class="old">从选题、组稿到配图全程手动，一节新课的准备工作基本靠人堆时间成本</td><td class="new">人只在课件定稿与内容核验两处拍板，其余环节由 Agent 完成后交人确认</td></tr>
+        <tr><td>出结果要多久</td><td class="old">一节新课从构思到可用往往跨天，改一版要重走一遍流程</td><td class="new">布置任务后 Agent 当次产出可评审的课件初稿，修改只回溯受影响的环节</td></tr>
+        <tr><td>一次能并行几条线</td><td class="old">一位老师同一时间只能推进一节课，多班并行就要加班</td><td class="new">多个 Agent 并行准备多节课，老师按优先级逐份把关，不必来回切换工具</td></tr>
+        <tr><td>结论能不能追溯</td><td class="old">靠个人记忆与聊天记录，事后难复盘"这一页为什么这么写"</td><td class="new">每一步动作、依据与签字留痕，可按课回放到具体环节与操作人</td></tr>
+        <tr><td>经验会不会沉淀</td><td class="old">好课件留在个人文件夹里，人走经验走，下一位老师重头摸索</td><td class="new">课件、核验结论与教研经验沉淀进校本库，新老师可以直接复用并继续迭代</td></tr>
+        <tr><td>换个岗位要不要重学</td><td class="old">换岗或换人接手，要重新熟悉流程、资料位置与历史版本</td><td class="new">流程与看板统一，新老师按同一套界面接手，历史记录随课可查</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 <!-- ================= 5. 使用场景 ================= -->
 <section id="day">
   <div class="wrap">
@@ -619,15 +676,26 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
   </div>
 </section>
 
-<!-- ================= 9. CTA ================= -->
+<!-- ================= 9. 收尾：服务能力 / 联系 / 预约演示（P0） ================= -->
 <section id="contact">
   <div class="wrap">
-    <div class="cta">
-      <h2>让 AI 承担工作，让人守住判断</h2>
-      <p>xLab 正在寻找首批试点合作学校与公益组织。欢迎预约演示：我们会用你的真实场景，现场跑一遍从课件到课程准备的完整流程。</p>
-      <a class="btn" href="mailto:联系邮箱占位">预约演示</a>
-      <p class="note">联系方式占位：请替换为您的电话 / 微信 / 邮箱</p>
+    <h2>服务能力：<span class="accent">交付、陪跑、培训与响应口径</span></h2>
+    <p class="sub">不是交付一套软件就走：能力怎么落地、出了问题找谁、多久有回应，都在这里写清楚。</p>
+    <ul class="svc">
+      <li><b>交付</b><span>从需求到上线按里程碑交付可用版本，每个里程碑附可复跑的验收证据与产物清单。</span></li>
+      <li><b>陪跑</b><span>上线后按周复盘真实使用数据，与教研组一起调整流程、提示词与校本资料口径。</span></li>
+      <li><b>培训</b><span>为老师与运营各出一套上手材料，含真实课例演练，新老师按同一套流程接手。</span></li>
+      <li><b>响应口径</b><span>工作时间内的问题当日响应；影响正常授课的问题优先处理并同步处理进展。</span></li>
+    </ul>
+
+    <h2 style="margin-top:40px">联系：<span class="accent">预约演示与试点合作</span></h2>
+    <p class="sub">我们会用你的真实课程场景，现场跑一遍从备课任务到课件定稿的完整流程。</p>
+    <div class="contact-block">
+      <div><b>电话</b><span>[联系电话占位]</span></div>
+      <div><b>微信</b><span>[微信号占位]</span></div>
+      <div><b>邮箱</b><span>[联系邮箱占位]</span></div>
     </div>
+    <div class="cta-final"><a class="btn-grad" href="#contact">预约演示</a></div>
   </div>
   <footer>
     <p>xLab · AI-Native 教育协作平台　|　本页所有界面示意均为设计稿，正式产品以演示版本为准</p>
