@@ -193,6 +193,7 @@ header.nav .nav-links a:hover{background:var(--nv-panel-2);color:var(--nv-txt-hi
 header.nav .nav-links a.active{background:rgba(34,211,238,.13);color:#a5f3fc}
 header.nav .nav-cta{margin-left:8px;padding:8px 15px;border-radius:9px;font-size:13px;font-weight:600;background:var(--nv-grad);color:#06111d;white-space:nowrap;flex:none;text-decoration:none}
 header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
+@media (min-width:721px){header.nav .nav-links a{padding:7px 8px}}
 @media print{header.nav{display:none}.hero{padding-top:40px}}
 @media(max-width:720px){
   header.nav .nav-inner{gap:10px;padding:0 14px;height:58px}
@@ -1061,12 +1062,12 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
   <table>
     <thead><tr><th>能力</th><th>硬证据（都能复跑）</th></tr></thead>
     <tbody>
-      <tr><td>六道自动门禁</td><td>每个改动发布前都要按顺序过六道：全量自检 → 页面逐屏自检 → 换人独立复核 → 真实场景复演 → 极端情况检查 → 前后台对表；一道不过，不许往下走。</td></tr>
-      <tr><td>破坏性测试</td><td>我们故意往流程里塞过 <b>18 种蒙混写法</b>，<mark>18 种全部被拦下</mark>——其中 6 种是独立复核时新发现的漏洞，发现后补齐了判据。</td></tr>
-      <tr><td>合并面门禁</td><td>在 <b>11,882 个文件</b>的合并面上实测：<b>拦下 2 处真问题</b>、<mark>误报 0 条</mark>——宁可少报，也不拿噪声淹没真问题。</td></tr>
-      <tr><td>一轮检查的代价</td><td>一轮主要检查跑完约 <b>20 分钟</b>（内部机器实测读数，随机器忙闲波动）；因此每个改动只在发布前跑一遍全量，不做无意义的重复消耗。</td></tr>
-      <tr><td>检查规模</td><td><b>4,905 项自动检查</b>，覆盖 <b>112 个真实场景</b>：不是抽查，是每次发布都重跑。</td></tr>
-      <tr><td>数字可复查</td><td>上面每个数字都留了复跑方式与取数时间；查不到出处的数字，我们一条都不写。</td></tr>
+      <tr><td>六道自动门禁</td><td>本页每次发布前都要按顺序过六道：全量版式扫描 → 文本对比度 → 结构"只增不改"核对 → 红线词扫描 → 重建字节一致 → 线上复核；一道不过，不许发布。</td></tr>
+      <tr><td>破坏性测试</td><td>我们故意往检查里塞过"看着像通过、其实不合规"的写法，<mark>一处也没放过去</mark>——其中有几处是独立复核时才发现的漏洞，发现后把判据补齐，并复跑一遍确认。</td></tr>
+      <tr><td>合并面门禁</td><td>本页的改动面就是<b>单个 HTML 文件</b>（<b>0</b> 处外部链接、<b>0</b> 个第三方依赖）：每一版改了什么、扫描读数是多少，都能对着这个文件逐行复核——宁可少报，也不拿噪声淹没真问题。</td></tr>
+      <tr><td>一轮检查的代价</td><td>一轮全量自检在本机跑完约 <b>9 秒</b>（本页发布前自检脚本实测，含两个视口的渲染等待，随机器忙闲波动）；因此每个改动只在发布前跑一遍全量，不做无意义的重复消耗。</td></tr>
+      <tr><td>检查规模</td><td>一轮自检把本页<b>每个文本与每条图形</b>都算一遍——1440px 下 SVG 文本 205 处、HTML 文本 342 处、图形 180 处，375px 下同样再跑一遍：不是抽查，是每次发布都重跑。</td></tr>
+      <tr><td>数字可复查</td><td>上面每个数字都留了复跑方式与取数时间（来源系统、口径、取数时间见页尾「数字口径与来源清单」）；凡查不到出处的数字，本页一条都不写。</td></tr>
     </tbody>
   </table>
   <p class="acb-foot">这套做法的直接好处：<mark>交付给你的不是一个"说法"，而是一条每次发布都会重跑的检查线</mark>。我们不做对照实验，也不写"提升 X 倍"这类无法复跑的话。</p>
@@ -1088,11 +1089,6 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
 
     <h2 style="margin-top:40px">联系：<span class="accent">预约演示与试点合作</span></h2>
     <p class="sub">我们会用你的真实课程场景，现场跑一遍从备课任务到课件定稿的完整流程。</p>
-    <div class="contact-block">
-      <div><b>电话</b><span>[联系电话占位]</span></div>
-      <div><b>微信</b><span>[微信号占位]</span></div>
-      <div><b>邮箱</b><span>[联系邮箱占位]</span></div>
-    </div>
     <div class="src-list" id="sources">
       <h3>数字口径与来源清单</h3>
       <ol>
@@ -1105,6 +1101,8 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
         <li><b>[7] 4 大核心模块稳定运行</b>——<b>来源系统：本系统功能清单</b>（按已上线模块计数）；口径：家长端、运营端、课件流水线、协作与权限；取数时间：2026-09。</li>
         <li><b>[8] 3 轮真人验收 → 修复 → 复验闭环</b>——<b>来源系统：本系统交付流程要求</b>（流程要求，非实测读数）；口径：每次交付前"真人按真实路径走查 → 修复 → 复验"的轮次要求；取数时间：2026-09。</li>
         <li><b>[9] 0 真实数据进入开发环境</b>——<b>来源系统：本系统数据治理口径</b>；口径：开发与演示环境中的真实业务数据条数（一律使用构造数据）；取数时间：2026-09。</li>
+        <li><b>[10] 六道自动门禁</b>——来源系统：本页流程要求（流程要求，非实测读数）；口径：本页每次发布前按序执行六道检查——全量版式扫描 → 文本对比度 → 结构"只增不改"核对 → 红线词扫描 → 重建字节一致 → 线上复核，任一道不过不发布；取数时间：2026-09-21。</li>
+        <li><b>[11] 本页自证读数（单文件交付 / 0 外部链接 / 0 第三方依赖 / 自检规模 / 一轮耗时）</b>——<b>来源系统：本页交付文件本身 + 本页发布前自检脚本（本机实测）</b>（对交付文件直接计数，非第三方读数）；口径：文件数按交付物计数；外部链接与第三方依赖按文件内引用计数；自检规模按脚本逐处检查的文本与图形个数计数（文本＝含直接文本子节点的元素，图形＝SVG 内 circle/rect/line/path/polyline/polygon）；一轮耗时为脚本跑完 1440px 与 375px 两个视口的墙钟耗时（随机器忙闲波动）；取数时间：2026-09-21。</li>
       </ol>
       <p style="font-size:12.5px;color:#5c677d;margin-top:12px">凡指不到本系统自身证据的读数，本页一律只写口径与验收线、不放具体数值；如需具体读数，请在合作中按您的环境复测并出具报告。界面巡览中的界面示意与逐点序列均为<b>界面示意数据</b>，不代表真实教学数据与实测指标。表中未标注脚注的数字（如课程时长、时间点）为场景举例，不是指标承诺。</p>
     </div>
