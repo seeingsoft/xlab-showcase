@@ -214,6 +214,7 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
     <nav class="nav-links" aria-label="页面导航">
       <a href="#tour">界面巡览</a>
       <a href="#users">三类使用者</a>
+      <a href="#flow">业务流程</a>
       <a href="#core">核心能力</a>
       <a href="#design">设计内核</a>
       <a href="#engine">协作引擎</a>
@@ -482,6 +483,140 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
         <p>家长与孩子看课程、报名、查看作品；家长与孩子的关系绑定须经人工确认，儿童信息按最小权限投影。</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ================= 端到端业务流程（泳道时序图） ================= -->
+<section id="flow">
+  <div class="wrap">
+    <h2>端到端业务流程：<span class="accent">一门课从布置到沉淀，AI 只在两处停下来等人</span></h2>
+    <p class="sub">四条泳道是参与一门课的四类主体。实线＝执行与交付（箭头指向接收方），虚线＝回执与资料回流；金色那一段是全程唯一需要人工的节点。</p>
+    <figure class="fig">
+      <svg viewBox="0 0 1010 1000" role="img" aria-label="端到端业务流程泳道时序图：老师、xLab AI Agent 团队、教研组长、平台的分工与交接">
+        <defs>
+          <marker id="sw-cy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#087ea4"/></marker>
+          <marker id="sw-pu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5b4bc4"/></marker>
+          <marker id="sw-go" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#a86f00"/></marker>
+        </defs>
+        <rect x="0" y="0" width="1010" height="1000" rx="16" fill="#f7f9ff" stroke="#dce2f2"/>
+        <!-- 泳道分隔线 -->
+        <g stroke="rgba(100,116,139,.16)" stroke-width="1">
+          <line x1="264.5" y1="78" x2="264.5" y2="922"/>
+          <line x1="505" y1="78" x2="505" y2="922"/>
+          <line x1="745.5" y1="78" x2="745.5" y2="922"/>
+        </g>
+        <!-- 角色生命线（编号步骤挂在线上） -->
+        <g stroke="rgba(100,116,139,.35)" stroke-width="1" stroke-dasharray="3 6">
+          <line x1="144" y1="78" x2="144" y2="922"/>
+          <line x1="385" y1="78" x2="385" y2="922"/>
+          <line x1="625" y1="78" x2="625" y2="922"/>
+          <line x1="866" y1="78" x2="866" y2="922"/>
+        </g>
+        <!-- 顶部角色卡 -->
+        <g>
+          <rect x="44" y="16" width="200" height="50" rx="12" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.2"/>
+          <text x="144" y="38" text-anchor="middle" font-size="13.5" font-weight="700" fill="#4433a8">老师</text>
+          <text x="144" y="56" text-anchor="middle" font-size="10.5" fill="#5c677d">自有工具备课 · 上传 · 教学确认</text>
+          <rect x="285" y="16" width="200" height="50" rx="12" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.2"/>
+          <text x="385" y="38" text-anchor="middle" font-size="13.5" font-weight="700" fill="#4433a8">xLab AI Agent 团队</text>
+          <text x="385" y="56" text-anchor="middle" font-size="10.5" fill="#5c677d">摄取 · 事实包 · 查缺 · 起草</text>
+          <rect x="525" y="16" width="200" height="50" rx="12" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.2"/>
+          <text x="625" y="38" text-anchor="middle" font-size="13.5" font-weight="700" fill="#4433a8">教研组长</text>
+          <text x="625" y="56" text-anchor="middle" font-size="10.5" fill="#5c677d">下发任务 · 站内开放批准</text>
+          <rect x="766" y="16" width="200" height="50" rx="12" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.2"/>
+          <text x="866" y="38" text-anchor="middle" font-size="13.5" font-weight="700" fill="#4433a8">平台</text>
+          <text x="866" y="56" text-anchor="middle" font-size="10.5" fill="#5c677d">版本冻结 · 通知 · 留痕 · 沉淀</text>
+        </g>
+        <!-- 【第一步】色带 -->
+        <rect x="34" y="92" width="942" height="158" rx="12" fill="#eeeafd" stroke="rgba(91,75,196,.35)"/>
+        <text x="48" y="118" font-size="13" font-weight="700" fill="#4433a8">第一步 布置备课任务</text>
+        <!-- 【第二步】色带 -->
+        <rect x="34" y="266" width="942" height="226" rx="12" fill="#e8f7ef" stroke="rgba(40,122,77,.35)"/>
+        <text x="48" y="292" font-size="13" font-weight="700" fill="#287a4d">第二步 Agent 准备课件</text>
+        <!-- 【金色段】全程唯一需要人工的节点 -->
+        <rect x="34" y="508" width="942" height="124" rx="12" fill="#fff5d6" stroke="rgba(244,169,0,.55)"/>
+        <text x="48" y="534" font-size="13" font-weight="700" fill="#8a5f00">全程唯一需要人工的节点</text>
+        <text x="48" y="622" font-size="11" fill="#5c677d">两次确认都留权威回执；材料一改，旧确认自动失效</text>
+        <!-- 【第三步】色带 -->
+        <rect x="34" y="648" width="942" height="252" rx="12" fill="#e4f5fa" stroke="rgba(8,126,164,.35)"/>
+        <text x="48" y="674" font-size="13" font-weight="700" fill="#0b6a85">第三步 发布与沉淀</text>
+        <text x="48" y="856" font-size="11" fill="#5c677d">循环：这门课沉淀的流程与话术，下一门课直接复用（回到第 4 步）</text>
+        <text x="48" y="876" font-size="11" fill="#5c677d">对外发布不在本流程内 —— 需要对外时，仍由人发起、人确认。</text>
+        <!-- 第二步：AI 连续执行的六个自动环节 -->
+        <g>
+          <rect x="300" y="292" width="106" height="56" rx="10" fill="#ffffff" stroke="rgba(40,122,77,.45)"/>
+          <text x="353" y="325" text-anchor="middle" font-size="11" fill="#1e293b">文件摄取</text>
+          <rect x="414" y="292" width="106" height="56" rx="10" fill="#ffffff" stroke="rgba(40,122,77,.45)"/>
+          <text x="467" y="325" text-anchor="middle" font-size="11" fill="#1e293b">标准化</text>
+          <rect x="528" y="292" width="106" height="56" rx="10" fill="#ffffff" stroke="rgba(40,122,77,.45)"/>
+          <text x="581" y="325" text-anchor="middle" font-size="11" fill="#1e293b">来源映射</text>
+          <rect x="642" y="292" width="106" height="56" rx="10" fill="#ffffff" stroke="rgba(40,122,77,.45)"/>
+          <text x="695" y="325" text-anchor="middle" font-size="11" fill="#1e293b">事实包</text>
+          <rect x="756" y="292" width="106" height="56" rx="10" fill="#ffffff" stroke="rgba(40,122,77,.45)"/>
+          <text x="809" y="325" text-anchor="middle" font-size="11" fill="#1e293b">时长适配</text>
+          <rect x="870" y="292" width="106" height="56" rx="10" fill="#ffffff" stroke="rgba(40,122,77,.45)"/>
+          <text x="923" y="325" text-anchor="middle" font-size="11" fill="#1e293b">集中查缺</text>
+          <text x="300" y="368" font-size="11" fill="#5c677d">六个环节连续执行，不打扰人</text>
+        </g>
+        <!-- 步骤 1–3：第一步 -->
+        <line x1="625" y1="134" x2="144" y2="134" stroke="#087ea4" stroke-width="1.6" marker-end="url(#sw-cy)"/>
+        <circle cx="625" cy="134" r="9" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.6"/><text x="625" y="138" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">1</text>
+        <text x="505" y="124" text-anchor="middle" font-size="11.5" fill="#1e293b">下发备课任务：主题 / 时长 / 班级</text>
+        <line x1="144" y1="178" x2="866" y2="178" stroke="#087ea4" stroke-width="1.6" marker-end="url(#sw-cy)"/>
+        <circle cx="144" cy="178" r="9" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.6"/><text x="144" y="182" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">2</text>
+        <text x="505" y="168" text-anchor="middle" font-size="11.5" fill="#1e293b">上传已有课件（老师用自己熟悉的工具备课）</text>
+        <line x1="866" y1="222" x2="144" y2="222" stroke="#5b4bc4" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#sw-pu)"/>
+        <circle cx="866" cy="222" r="9" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.6"/><text x="866" y="226" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">3</text>
+        <text x="505" y="212" text-anchor="middle" font-size="11.5" fill="#1e293b">回执与缺件清单：缺什么一次说清</text>
+        <!-- 步骤 4–5：第二步 -->
+        <line x1="385" y1="392" x2="866" y2="392" stroke="#087ea4" stroke-width="1.6" marker-end="url(#sw-cy)"/>
+        <circle cx="385" cy="392" r="9" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.6"/><text x="385" y="396" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">4</text>
+        <text x="625" y="382" text-anchor="middle" font-size="11.5" fill="#1e293b">提交事实包与流程候选，请平台冻结当次版本</text>
+        <line x1="866" y1="440" x2="385" y2="440" stroke="#5b4bc4" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#sw-pu)"/>
+        <circle cx="866" cy="440" r="9" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.6"/><text x="866" y="444" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">5</text>
+        <text x="625" y="430" text-anchor="middle" font-size="11.5" fill="#1e293b">版本指纹回执：材料一变，当次版本自动作废</text>
+        <!-- 步骤 6–7：金色段（人工节点） -->
+        <line x1="144" y1="568" x2="866" y2="568" stroke="#a86f00" stroke-width="2" marker-end="url(#sw-go)"/>
+        <circle cx="144" cy="568" r="9" fill="#f4a900" stroke="#a86f00" stroke-width="1"/><text x="144" y="572" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">6</text>
+        <text x="505" y="558" text-anchor="middle" font-size="11.5" fill="#1e293b">教学事实确认（具名，绑定当次版本）</text>
+        <line x1="625" y1="612" x2="866" y2="612" stroke="#a86f00" stroke-width="2" marker-end="url(#sw-go)"/>
+        <circle cx="625" cy="612" r="9" fill="#f4a900" stroke="#a86f00" stroke-width="1"/><text x="625" y="616" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">7</text>
+        <text x="480" y="600" text-anchor="middle" font-size="11.5" fill="#1e293b">站内开放批准（具名；对外发布永远是人的决定）</text>
+        <!-- 步骤 8–10：第三步 -->
+        <line x1="385" y1="712" x2="866" y2="712" stroke="#087ea4" stroke-width="1.6" marker-end="url(#sw-cy)"/>
+        <circle cx="385" cy="712" r="9" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.6"/><text x="385" y="716" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">8</text>
+        <text x="625" y="702" text-anchor="middle" font-size="11.5" fill="#1e293b">交付课程运营包草稿（草稿态，永不自动外发）</text>
+        <line x1="866" y1="756" x2="144" y2="756" stroke="#087ea4" stroke-width="1.6" marker-end="url(#sw-cy)"/>
+        <circle cx="866" cy="756" r="9" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.6"/><text x="866" y="760" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">9</text>
+        <text x="505" y="746" text-anchor="middle" font-size="11.5" fill="#1e293b">站内开放 + 双通道通知（接受 / 退回都留回执）</text>
+        <line x1="866" y1="800" x2="385" y2="800" stroke="#5b4bc4" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#sw-pu)"/>
+        <circle cx="866" cy="800" r="9" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.6"/><text x="866" y="804" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">10</text>
+        <text x="625" y="790" text-anchor="middle" font-size="11.5" fill="#1e293b">现场签到与作品回流 → 课后回顾与经验沉淀</text>
+        <!-- 图例 -->
+        <line x1="40" y1="918" x2="66" y2="918" stroke="#087ea4" stroke-width="2"/>
+        <text x="74" y="922" font-size="11" fill="#5c677d">实线：执行与交付（箭头指向接收方）</text>
+        <line x1="400" y1="918" x2="426" y2="918" stroke="#5b4bc4" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="434" y="922" font-size="11" fill="#5c677d">虚线：回执与资料回流</text>
+        <rect x="700" y="912" width="16" height="12" rx="3" fill="#f4a900" stroke="#a86f00"/>
+        <text x="724" y="922" font-size="11" fill="#5c677d">金色：全程唯一需要人工的节点</text>
+        <!-- 底部角色卡（与顶部同一份） -->
+        <g>
+          <rect x="44" y="934" width="200" height="50" rx="12" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.2"/>
+          <text x="144" y="956" text-anchor="middle" font-size="13.5" font-weight="700" fill="#4433a8">老师</text>
+          <text x="144" y="974" text-anchor="middle" font-size="10.5" fill="#5c677d">自有工具备课 · 上传 · 教学确认</text>
+          <rect x="285" y="934" width="200" height="50" rx="12" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.2"/>
+          <text x="385" y="956" text-anchor="middle" font-size="13.5" font-weight="700" fill="#4433a8">xLab AI Agent 团队</text>
+          <text x="385" y="974" text-anchor="middle" font-size="10.5" fill="#5c677d">摄取 · 事实包 · 查缺 · 起草</text>
+          <rect x="525" y="934" width="200" height="50" rx="12" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.2"/>
+          <text x="625" y="956" text-anchor="middle" font-size="13.5" font-weight="700" fill="#4433a8">教研组长</text>
+          <text x="625" y="974" text-anchor="middle" font-size="10.5" fill="#5c677d">下发任务 · 站内开放批准</text>
+          <rect x="766" y="934" width="200" height="50" rx="12" fill="#ffffff" stroke="#5b4bc4" stroke-width="1.2"/>
+          <text x="866" y="956" text-anchor="middle" font-size="13.5" font-weight="700" fill="#4433a8">平台</text>
+          <text x="866" y="974" text-anchor="middle" font-size="10.5" fill="#5c677d">版本冻结 · 通知 · 留痕 · 沉淀</text>
+        </g>
+      </svg>
+      <figcaption><b>图 2</b> · 端到端业务流程 —— 老师 / xLab AI Agent 团队 / 教研组长 / 平台 的分工与交接。金色段是全程唯一需要人工的节点。</figcaption>
+    </figure>
   </div>
 </section>
 
